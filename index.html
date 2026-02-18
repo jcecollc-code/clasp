@@ -24,6 +24,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Outfit', sans-serif;
@@ -531,10 +532,10 @@
     Clasp
   </div>
   <div class="nav-links">
-    <a href="#">Features</a>
-    <a href="#">Integrations</a>
-    <a href="#">Pricing</a>
-    <a href="#">Docs</a>
+    <a href="#how-it-works">How it Works</a>
+    <a href="#features">Features</a>
+    <a href="#integrations">Integrations</a>
+    <a href="#waitlist">Join Waitlist</a>
   </div>
   <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get Early Access</button>
 </nav>
@@ -751,7 +752,7 @@
 </section>
 
 <!-- FEATURES -->
-<section class="features-section">
+<section class="features-section" id="features">
   <div class="section-label">Features</div>
   <h2 class="section-title">Everything LinkedIn can't do</h2>
   <p class="section-sub">Because a professional network in 2026 should work for you, not make you work for it.</p>
@@ -791,7 +792,7 @@
 </section>
 
 <!-- INTEGRATIONS -->
-<section class="integrations-section">
+<section class="integrations-section" id="integrations">
   <div class="section-label">Integrations</div>
   <h2 class="section-title">Plugs into your whole stack</h2>
   <p class="section-sub" style="margin-bottom: 2.5rem;">Connect once. Claude handles the rest.</p>
