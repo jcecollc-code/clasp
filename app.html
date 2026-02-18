@@ -10,11 +10,13 @@
 :root{--blue:#0A66C2;--blue-dark:#004182;--blue-deep:#001B3D;--blue-light:#EAF3FF;--teal:#00B4A6;--teal-light:rgba(0,180,166,0.1);--green:#10B981;--green-light:rgba(16,185,129,0.1);--red:#EF4444;--bg:#F5F7FA;--text:#1A2332;--muted:#637B96;--light:#94A3B8;--border:#E4EBF4;--shadow:0 4px 16px rgba(0,30,80,0.08);--shadow-lg:0 16px 48px rgba(0,30,80,0.14);--radius:12px;--sidebar-w:232px;}
 *{margin:0;padding:0;box-sizing:border-box;}html,body{height:100%;}
 body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font-size:14px;-webkit-font-smoothing:antialiased;overflow:hidden;}
+
+/* AUTH */
 .auth-screen{display:none;position:fixed;inset:0;z-index:2000;background:linear-gradient(135deg,var(--blue-deep),var(--blue-dark),#00243F);align-items:center;justify-content:center;}
 .auth-screen.visible{display:flex;}
 .auth-box{background:white;border-radius:20px;padding:48px 40px;width:420px;text-align:center;box-shadow:var(--shadow-lg);animation:fadeUp 0.4s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.auth-logo{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--blue-dark);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
+.auth-logo{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--blue-dark);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;cursor:pointer;}
 .auth-logo-mark{width:36px;height:36px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;}
 .auth-logo-mark svg{width:18px;height:18px;}
 .auth-tagline{font-size:0.9rem;color:var(--muted);margin-bottom:32px;}
@@ -33,10 +35,12 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .google-btn:hover{border-color:var(--blue);background:var(--blue-light);}
 .auth-error{color:var(--red);font-size:0.78rem;padding:8px 12px;background:rgba(239,68,68,0.08);border-radius:8px;display:none;text-align:left;margin-bottom:4px;}
 .auth-success{color:var(--green);font-size:0.78rem;padding:8px 12px;background:var(--green-light);border-radius:8px;display:none;text-align:left;margin-bottom:4px;}
+
+/* LAYOUT */
 .app{display:flex;height:100vh;}
 .sidebar{width:var(--sidebar-w);background:white;border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
 .sidebar-top{padding:20px 16px 16px;border-bottom:1px solid var(--border);}
-.logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue-dark);display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue-dark);display:flex;align-items:center;gap:8px;margin-bottom:20px;cursor:pointer;}
 .logo-mark{width:30px;height:30px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;}
 .logo-mark svg{width:16px;height:16px;}
 .agent-trigger{width:100%;background:var(--blue-deep);border:none;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;font-family:'Outfit',sans-serif;transition:background 0.2s;}
@@ -54,11 +58,13 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .nav-item.active{background:var(--blue-light);color:var(--blue);font-weight:600;}
 .nav-item svg{width:16px;height:16px;flex-shrink:0;}
 .sidebar-user{padding:14px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;}
-.user-av{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.78rem;}
+.user-av{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.78rem;cursor:pointer;}
 .user-name{font-size:0.82rem;font-weight:600;}
 .user-role{font-size:0.72rem;color:var(--muted);margin-top:1px;}
 .signout-btn{margin-left:auto;background:none;border:none;cursor:pointer;color:var(--light);padding:4px;font-size:0.7rem;font-family:'Outfit',sans-serif;}
 .signout-btn:hover{color:var(--red);}
+
+/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .topbar{height:52px;background:white;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;flex-shrink:0;}
 .page-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-deep);}
@@ -66,6 +72,8 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .screen.active{display:block;}
 .agent-screen{display:none;flex:1;flex-direction:column;overflow:hidden;}
 .agent-screen.active{display:flex;}
+
+/* AGENT */
 .agent-header-bar{padding:16px 24px;background:white;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;}
 .agent-status{display:flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--teal);font-weight:500;}
 .agent-status-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
@@ -98,6 +106,8 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .send-btn:hover{background:var(--blue-dark);}
 .send-btn:disabled{background:var(--border);cursor:not-allowed;}
 .send-btn svg{width:15px;height:15px;}
+
+/* FORMS */
 .edit-form{display:flex;flex-direction:column;gap:12px;}
 .form-row{display:flex;gap:10px;}
 .form-group{display:flex;flex-direction:column;gap:5px;flex:1;}
@@ -107,32 +117,6 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .form-textarea{min-height:80px;resize:vertical;}
 .btn-save{background:var(--blue);color:white;border:none;border-radius:8px;padding:10px 24px;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;align-self:flex-start;}
 .btn-save:hover{background:var(--blue-dark);}
-.profile-layout{display:grid;grid-template-columns:1fr 280px;gap:20px;max-width:1000px;}
-.white-card{background:white;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;}
-.profile-cover{height:90px;background:linear-gradient(135deg,var(--blue-dark),var(--blue),var(--teal));}
-.profile-identity{padding:0 24px 20px;}
-.profile-av-wrap{margin-top:-28px;margin-bottom:8px;display:inline-block;}
-.profile-av{width:56px;height:56px;border-radius:50%;border:3px solid white;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.1rem;}
-.profile-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-deep);}
-.profile-headline{font-size:0.85rem;color:var(--muted);margin-top:2px;}
-.profile-stats{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:14px 0;}
-.stat-box{flex:1;padding:10px;text-align:center;border-right:1px solid var(--border);}
-.stat-box:last-child{border-right:none;}
-.stat-num{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-dark);}
-.stat-label{font-size:0.65rem;color:var(--muted);margin-top:2px;}
-.profile-section{padding:16px 24px;border-top:1px solid var(--border);}
-.section-heading{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--blue-deep);margin-bottom:10px;}
-.side-card{background:white;border-radius:var(--radius);border:1px solid var(--border);padding:16px;margin-bottom:14px;}
-.side-title{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-deep);margin-bottom:10px;}
-.person-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;transition:all 0.15s;}
-.person-card:hover{border-color:var(--blue);box-shadow:var(--shadow);}
-.person-av{width:44px;height:44px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;}
-.person-name{font-size:0.9rem;font-weight:600;}
-.person-role{font-size:0.78rem;color:var(--muted);margin-top:2px;}
-.person-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
-.ptag{font-size:0.68rem;font-weight:500;padding:2px 8px;border-radius:8px;background:var(--blue-light);color:var(--blue);}
-.person-signal{font-size:0.72rem;color:var(--green);font-weight:500;margin-top:6px;}
-.person-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end;justify-content:center;margin-left:auto;}
 .btn-sm{border:none;border-radius:8px;padding:7px 14px;font-size:0.76rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.15s;white-space:nowrap;}
 .btn-blue{background:var(--blue);color:white;}
 .btn-blue:hover{background:var(--blue-dark);}
@@ -140,19 +124,75 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .btn-dark:hover{background:#0A2240;}
 .btn-ghost{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
 .btn-ghost:hover{background:var(--blue-light);color:var(--blue);border-color:var(--blue);}
+
+/* PROFILE */
+.profile-layout{display:grid;grid-template-columns:1fr 280px;gap:20px;max-width:1100px;}
+.white-card{background:white;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;margin-bottom:16px;}
+.profile-cover{height:100px;background:linear-gradient(135deg,var(--blue-dark),var(--blue),var(--teal));}
+.profile-identity{padding:0 24px 20px;}
+.profile-av-wrap{margin-top:-32px;margin-bottom:10px;display:inline-block;}
+.profile-av{width:64px;height:64px;border-radius:50%;border:3px solid white;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;}
+.profile-name{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--blue-deep);}
+.profile-headline{font-size:0.88rem;color:var(--muted);margin-top:3px;}
+.profile-meta{display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;}
+.profile-meta-item{font-size:0.78rem;color:var(--muted);display:flex;align-items:center;gap:4px;}
+.profile-stats{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:14px 0;}
+.stat-box{flex:1;padding:10px;text-align:center;border-right:1px solid var(--border);}
+.stat-box:last-child{border-right:none;}
+.stat-num{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-dark);}
+.stat-label{font-size:0.65rem;color:var(--muted);margin-top:2px;}
+.profile-section{padding:16px 24px;border-top:1px solid var(--border);}
+.section-heading{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;color:var(--blue-deep);margin-bottom:12px;}
+.skills-wrap{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-tag{background:var(--blue-light);color:var(--blue);font-size:0.75rem;font-weight:500;padding:4px 12px;border-radius:20px;}
+.skill-tag.removable{cursor:pointer;}
+.skill-tag.removable:hover{background:#fee;color:var(--red);}
+.open-to-wrap{display:flex;flex-wrap:wrap;gap:6px;}
+.open-tag{background:var(--green-light);color:var(--green);font-size:0.75rem;font-weight:500;padding:4px 12px;border-radius:20px;}
+.exp-item{padding:12px 0;border-bottom:1px solid var(--border);}
+.exp-item:last-child{border-bottom:none;}
+.exp-title{font-size:0.88rem;font-weight:600;color:var(--text);}
+.exp-company{font-size:0.8rem;color:var(--muted);}
+.exp-dates{font-size:0.72rem;color:var(--light);margin-top:2px;}
+.side-card{background:white;border-radius:var(--radius);border:1px solid var(--border);padding:16px;margin-bottom:14px;}
+.side-title{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-deep);margin-bottom:10px;}
+
+/* PEOPLE DIRECTORY */
+.search-bar-wrap{display:flex;align-items:center;gap:8px;background:white;border:1.5px solid var(--border);border-radius:10px;padding:10px 16px;margin-bottom:16px;}
+.search-bar-wrap:focus-within{border-color:var(--blue);}
+.search-bar-wrap svg{width:16px;height:16px;color:var(--muted);flex-shrink:0;}
+.search-input{border:none;outline:none;flex:1;font-family:'Outfit',sans-serif;font-size:0.9rem;color:var(--text);}
+.search-input::placeholder{color:var(--light);}
+.person-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;transition:all 0.15s;cursor:pointer;}
+.person-card:hover{border-color:var(--blue);box-shadow:var(--shadow);}
+.person-av{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;}
+.person-name{font-size:0.92rem;font-weight:600;}
+.person-role{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.person-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.ptag{font-size:0.68rem;font-weight:500;padding:2px 8px;border-radius:8px;background:var(--blue-light);color:var(--blue);}
+.otag{font-size:0.68rem;font-weight:500;padding:2px 8px;border-radius:8px;background:var(--green-light);color:var(--green);}
+.person-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end;justify-content:center;margin-left:auto;}
+
+/* PUBLIC PROFILE MODAL */
+.profile-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,20,50,0.5);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;}
+.profile-modal.open{display:flex;}
+.profile-modal-box{background:var(--bg);border-radius:16px;width:100%;max-width:800px;overflow:hidden;box-shadow:var(--shadow-lg);animation:fadeUp 0.2s ease;}
+.modal-close{position:absolute;top:16px;right:16px;background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:0.8rem;font-family:'Outfit',sans-serif;color:var(--muted);}
+.modal-close:hover{color:var(--text);}
+
+/* DRAFTS */
 .draft-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;}
 .draft-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
 .draft-to{font-size:0.85rem;font-weight:600;}
 .draft-type{font-size:0.7rem;background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:8px;font-weight:500;}
 .draft-content{font-size:0.82rem;color:var(--muted);line-height:1.6;white-space:pre-wrap;}
 .draft-time{font-size:0.7rem;color:var(--light);margin-top:8px;}
-.search-bar-wrap{display:flex;align-items:center;gap:8px;background:white;border:1.5px solid var(--border);border-radius:10px;padding:10px 16px;margin-bottom:16px;}
-.search-bar-wrap:focus-within{border-color:var(--blue);}
-.search-bar-wrap svg{width:16px;height:16px;color:var(--muted);flex-shrink:0;}
-.search-input{border:none;outline:none;flex:1;font-family:'Outfit',sans-serif;font-size:0.9rem;color:var(--text);}
-.search-input::placeholder{color:var(--light);}
+
+/* TOAST */
 .toast{position:fixed;bottom:24px;right:24px;z-index:999;background:var(--blue-deep);color:white;padding:12px 20px;border-radius:10px;font-size:0.85rem;font-weight:500;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:8px;transform:translateY(80px);opacity:0;transition:all 0.3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
+
+/* SPOTLIGHT */
 .spotlight-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,20,50,0.5);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:12vh;}
 .spotlight-overlay.open{display:flex;}
 .spotlight-box{width:600px;background:white;border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;animation:spotOpen 0.18s ease;}
@@ -178,9 +218,10 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 </head>
 <body>
 
+<!-- AUTH -->
 <div class="auth-screen visible" id="auth-screen">
   <div class="auth-box">
-    <div class="auth-logo" onclick="window.location.href='/'" style="cursor:pointer;">
+    <div class="auth-logo" onclick="window.location.href='/'">
       <div class="auth-logo-mark"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       Clasp
     </div>
@@ -205,10 +246,11 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
   </div>
 </div>
 
+<!-- APP -->
 <div class="app" id="app" style="display:none">
   <aside class="sidebar">
     <div class="sidebar-top">
-      <div class="logo" onclick="window.location.href='/'" style="cursor:pointer;"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Clasp</div>
+      <div class="logo" onclick="window.location.href='/'"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Clasp</div>
       <button class="agent-trigger" onclick="openSpotlight()">
         <div class="agent-orb"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div>
         <div class="agent-trigger-text"><span>Ask Claude</span><span>Your AI networking agent</span></div>
@@ -219,12 +261,12 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
       <div class="nav-label">Workspace</div>
       <div class="nav-item active" onclick="switchScreen('agent',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>Claude Agent</div>
       <div class="nav-item" onclick="switchScreen('profile',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>My Profile</div>
-      <div class="nav-item" onclick="switchScreen('search',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Find People</div>
+      <div class="nav-item" onclick="switchScreen('people',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>People</div>
       <div class="nav-item" onclick="switchScreen('outreach',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Draft Outreach</div>
       <div class="nav-item" onclick="switchScreen('drafts',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Saved Drafts</div>
     </nav>
     <div class="sidebar-user">
-      <div class="user-av" id="sidebar-av">?</div>
+      <div class="user-av" id="sidebar-av" onclick="switchScreen('profile',document.querySelectorAll('.nav-item')[1])">?</div>
       <div><div class="user-name" id="sidebar-name">Loading…</div><div class="user-role" id="sidebar-role"></div></div>
       <button class="signout-btn" onclick="signOut()">Sign out</button>
     </div>
@@ -233,6 +275,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
   <div class="main">
     <div class="topbar"><div class="page-title" id="page-title">Claude Agent</div></div>
 
+    <!-- AGENT -->
     <div class="agent-screen active" id="screen-agent">
       <div class="agent-header-bar">
         <div class="agent-orb" style="width:32px;height:32px;"><svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div>
@@ -254,15 +297,21 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
       </div>
     </div>
 
+    <!-- PROFILE -->
     <div class="screen" id="screen-profile">
       <div class="profile-layout">
         <div>
+          <!-- Profile Card -->
           <div class="white-card">
             <div class="profile-cover"></div>
             <div class="profile-identity">
               <div class="profile-av-wrap"><div class="profile-av" id="profile-av-display">?</div></div>
               <div class="profile-name" id="profile-name-display">Your Name</div>
               <div class="profile-headline" id="profile-headline-display">Your title</div>
+              <div class="profile-meta">
+                <span class="profile-meta-item" id="profile-location-display"></span>
+                <span class="profile-meta-item" id="profile-url-display"></span>
+              </div>
             </div>
             <div style="padding:0 24px 16px;">
               <div class="profile-stats">
@@ -271,25 +320,101 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
                 <div class="stat-box"><div class="stat-num">✦</div><div class="stat-label">AI Powered</div></div>
               </div>
             </div>
+          </div>
+
+          <!-- Edit Basic Info -->
+          <div class="white-card">
             <div class="profile-section">
-              <div class="section-heading">Your Profile — Claude uses this to personalize everything</div>
+              <div class="section-heading">Basic Info</div>
               <div class="edit-form">
                 <div class="form-row">
                   <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="input-name" type="text" placeholder="Your name" oninput="updateProfileDisplay()"></div>
-                  <div class="form-group"><label class="form-label">Job Title</label><input class="form-input" id="input-title" type="text" placeholder="e.g. VP of Sales" oninput="updateProfileDisplay()"></div>
+                  <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="input-username" type="text" placeholder="e.g. jordansmith"></div>
                 </div>
                 <div class="form-row">
+                  <div class="form-group"><label class="form-label">Job Title</label><input class="form-input" id="input-title" type="text" placeholder="e.g. VP of Sales" oninput="updateProfileDisplay()"></div>
                   <div class="form-group"><label class="form-label">Company</label><input class="form-input" id="input-company" type="text" placeholder="Your company"></div>
-                  <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="input-location" type="text" placeholder="City, State"></div>
                 </div>
-                <div class="form-group"><label class="form-label">About You</label><textarea class="form-input form-textarea" id="input-about" placeholder="A short bio — Claude will write in your voice"></textarea></div>
-                <div class="form-group"><label class="form-label">Your Ideal Customer Profile (ICP)</label><textarea class="form-input form-textarea" id="input-icp" placeholder="e.g. VP Sales at Series B+ SaaS, 50-500 employees, US-based"></textarea></div>
-                <button class="btn-save" onclick="saveProfile()">Save Profile</button>
+                <div class="form-row">
+                  <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="input-location" type="text" placeholder="City, State"></div>
+                  <div class="form-group"><label class="form-label">Website / LinkedIn</label><input class="form-input" id="input-website" type="text" placeholder="https://"></div>
+                </div>
+                <div class="form-group"><label class="form-label">Headline</label><input class="form-input" id="input-headline" type="text" placeholder="e.g. Helping B2B teams close faster with AI"></div>
+                <div class="form-group"><label class="form-label">About</label><textarea class="form-input form-textarea" id="input-about" placeholder="Your bio — Claude will write outreach in your voice"></textarea></div>
               </div>
             </div>
           </div>
+
+          <!-- Skills -->
+          <div class="white-card">
+            <div class="profile-section">
+              <div class="section-heading">Skills</div>
+              <div class="skills-wrap" id="skills-display" style="margin-bottom:10px;"></div>
+              <div style="display:flex;gap:8px;">
+                <input class="form-input" id="skill-input" type="text" placeholder="Add a skill…" style="flex:1;" onkeydown="if(event.key==='Enter')addSkill()">
+                <button class="btn-sm btn-ghost" onclick="addSkill()">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Open To -->
+          <div class="white-card">
+            <div class="profile-section">
+              <div class="section-heading">Open To</div>
+              <div class="open-to-wrap" id="opento-display" style="margin-bottom:10px;"></div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button class="btn-sm btn-ghost" onclick="toggleOpenTo('New opportunities')">New opportunities</button>
+                <button class="btn-sm btn-ghost" onclick="toggleOpenTo('Partnerships')">Partnerships</button>
+                <button class="btn-sm btn-ghost" onclick="toggleOpenTo('Investing')">Investing</button>
+                <button class="btn-sm btn-ghost" onclick="toggleOpenTo('Advisory roles')">Advisory roles</button>
+                <button class="btn-sm btn-ghost" onclick="toggleOpenTo('Speaking')">Speaking</button>
+                <button class="btn-sm btn-ghost" onclick="toggleOpenTo('Mentoring')">Mentoring</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience -->
+          <div class="white-card">
+            <div class="profile-section">
+              <div class="section-heading">Experience</div>
+              <div id="exp-list" style="margin-bottom:16px;"></div>
+              <div style="background:var(--bg);border-radius:10px;padding:16px;" id="exp-form">
+                <div style="font-size:0.78rem;font-weight:600;color:var(--muted);margin-bottom:10px;">Add Experience</div>
+                <div class="edit-form">
+                  <div class="form-row">
+                    <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="exp-title" type="text" placeholder="e.g. VP of Sales"></div>
+                    <div class="form-group"><label class="form-label">Company</label><input class="form-input" id="exp-company" type="text" placeholder="Company name"></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group"><label class="form-label">Start</label><input class="form-input" id="exp-start" type="text" placeholder="e.g. Jan 2022"></div>
+                    <div class="form-group"><label class="form-label">End</label><input class="form-input" id="exp-end" type="text" placeholder="Present"></div>
+                  </div>
+                  <div class="form-group"><label class="form-label">Description</label><textarea class="form-input form-textarea" id="exp-desc" placeholder="What did you do?" style="min-height:60px;"></textarea></div>
+                  <button class="btn-sm btn-blue" onclick="addExperience()" style="align-self:flex-start;">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ICP for Claude -->
+          <div class="white-card">
+            <div class="profile-section">
+              <div class="section-heading">Your ICP — Claude uses this for lead searches</div>
+              <div class="edit-form">
+                <div class="form-group"><textarea class="form-input form-textarea" id="input-icp" placeholder="e.g. VP Sales at Series B+ SaaS companies, 50-500 employees, US-based"></textarea></div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-save" onclick="saveProfile()" style="margin-top:4px;">Save Profile</button>
         </div>
+
         <div>
+          <div class="side-card">
+            <div class="side-title">Your public profile link</div>
+            <div id="public-link" style="font-size:0.78rem;color:var(--blue);word-break:break-all;margin-bottom:10px;">Fill in a username above</div>
+            <button class="btn-sm btn-ghost" onclick="copyPublicLink()" style="width:100%;justify-content:center;">Copy link</button>
+          </div>
           <div class="side-card">
             <div class="side-title">What Claude does with your profile</div>
             <div style="font-size:0.8rem;color:var(--muted);line-height:1.9;">✦ Writes outreach in your voice<br>✦ Targets leads matching your ICP<br>✦ Personalizes every message<br>✦ Researches companies you care about</div>
@@ -298,25 +423,21 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
       </div>
     </div>
 
-    <div class="screen" id="screen-search">
+    <!-- PEOPLE DIRECTORY -->
+    <div class="screen" id="screen-people">
       <div class="search-bar-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input class="search-input" type="text" placeholder="Search by name, company, or role…" oninput="filterPeople(this.value)">
+        <input class="search-input" type="text" id="people-search" placeholder="Search by name, title, company, or skill…" oninput="searchPeople(this.value)">
       </div>
       <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
-        <button class="btn-sm btn-dark" onclick="askClaudeToSearch()">✦ Ask Claude to find leads for me</button>
-        <button class="btn-sm btn-ghost">VP / Director</button>
-        <button class="btn-sm btn-ghost">Series B+</button>
-        <button class="btn-sm btn-ghost">Bay Area</button>
+        <button class="btn-sm btn-dark" onclick="askClaudeToSearch()">✦ Ask Claude to find leads</button>
+        <button class="btn-sm btn-ghost" onclick="filterByOpenTo('New opportunities')">Open to opportunities</button>
+        <button class="btn-sm btn-ghost" onclick="filterByOpenTo('Partnerships')">Open to partnerships</button>
       </div>
-      <div id="people-list">
-        <div class="person-card" data-search="alex morgan vp sales stripe fintech"><div class="person-av" style="background:linear-gradient(135deg,#0A66C2,#00B4A6)">AM</div><div style="flex:1;"><div class="person-name">Alex Morgan</div><div class="person-role">VP of Sales · Stripe</div><div class="person-tags"><span class="ptag">FinTech</span><span class="ptag">Payments</span></div><div class="person-signal">● Posted about AI sales tools 2 days ago</div></div><div class="person-actions"><button class="btn-sm btn-dark" onclick="draftOutreachFor('Alex Morgan','VP of Sales at Stripe')">✦ Draft outreach</button></div></div>
-        <div class="person-card" data-search="riley chen director sales notion saas"><div class="person-av" style="background:linear-gradient(135deg,#004182,#0073B1)">RC</div><div style="flex:1;"><div class="person-name">Riley Chen</div><div class="person-role">Director of Sales · Notion</div><div class="person-tags"><span class="ptag">B2B SaaS</span><span class="ptag">PLG</span></div><div class="person-signal">● Hiring 3 AEs — posted 4 days ago</div></div><div class="person-actions"><button class="btn-sm btn-dark" onclick="draftOutreachFor('Riley Chen','Director of Sales at Notion')">✦ Draft outreach</button></div></div>
-        <div class="person-card" data-search="taylor kim vp revenue linear devtools"><div class="person-av" style="background:linear-gradient(135deg,#0073B1,#00B4A6)">TK</div><div style="flex:1;"><div class="person-name">Taylor Kim</div><div class="person-role">VP Revenue · Linear</div><div class="person-tags"><span class="ptag">RevOps</span><span class="ptag">Dev Tools</span></div><div class="person-signal">● Shared post on AI prospecting 6 days ago</div></div><div class="person-actions"><button class="btn-sm btn-dark" onclick="draftOutreachFor('Taylor Kim','VP Revenue at Linear')">✦ Draft outreach</button></div></div>
-        <div class="person-card" data-search="morgan park head sales retool automation"><div class="person-av" style="background:linear-gradient(135deg,#1E3A5F,#0A66C2)">MP</div><div style="flex:1;"><div class="person-name">Morgan Park</div><div class="person-role">Head of Sales · Retool</div><div class="person-tags"><span class="ptag">Low-Code</span><span class="ptag">Automation</span></div><div class="person-signal">● 2 mutual connections</div></div><div class="person-actions"><button class="btn-sm btn-dark" onclick="draftOutreachFor('Morgan Park','Head of Sales at Retool')">✦ Draft outreach</button></div></div>
-      </div>
+      <div id="people-list"><div style="text-align:center;padding:48px;color:var(--light);">Loading members…</div></div>
     </div>
 
+    <!-- OUTREACH -->
     <div class="screen" id="screen-outreach">
       <div style="max-width:700px;">
         <div style="background:white;border-radius:var(--radius);border:1px solid var(--border);padding:24px;">
@@ -348,12 +469,21 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
       </div>
     </div>
 
+    <!-- DRAFTS -->
     <div class="screen" id="screen-drafts">
       <div style="max-width:700px;">
         <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-deep);margin-bottom:16px;">Saved Drafts</div>
-        <div id="drafts-list"><div style="text-align:center;padding:48px;color:var(--light);font-size:0.88rem;">No drafts yet — generate outreach and save them here.</div></div>
+        <div id="drafts-list"><div style="text-align:center;padding:48px;color:var(--light);font-size:0.88rem;">No drafts yet.</div></div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="profile-modal" id="profile-modal" onclick="if(event.target===this)closeProfileModal()">
+  <div class="profile-modal-box" id="profile-modal-content" style="position:relative;">
+    <button class="modal-close" onclick="closeProfileModal()">✕ Close</button>
+    <div id="modal-body"></div>
   </div>
 </div>
 
@@ -368,7 +498,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
     </div>
     <div class="spot-suggestions">
       <div class="spot-label">Quick actions</div>
-      <div class="spot-item" onclick="spotAction('Find VP Sales leads at Series B SaaS companies')"><div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><div><div class="spot-title">Find VP Sales leads at Series B SaaS companies</div><div class="spot-sub">Lead search</div></div></div>
+      <div class="spot-item" onclick="spotAction('Find VP Sales leads at Series B SaaS companies')"><div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><div><div class="spot-title">Find VP Sales leads at Series B SaaS</div><div class="spot-sub">Lead search</div></div></div>
       <div class="spot-item" onclick="spotAction('Draft a LinkedIn connection note for cold outreach')"><div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="spot-title">Draft a LinkedIn connection note</div><div class="spot-sub">Outreach</div></div></div>
       <div class="spot-item" onclick="spotAction('Write a follow-up for a prospect who went cold')"><div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><div class="spot-title">Write a follow-up for a cold prospect</div><div class="spot-sub">Outreach</div></div></div>
     </div>
@@ -380,7 +510,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 const{createClient}=supabase;
 const sb=createClient('https://exfejbtwxqczcghwfjyw.supabase.co','sb_publishable_0wsYlW-72LC8AxHCdgavQQ_I7-lu1RC');
 let currentUser=null,userProfile={},chatHistory=[],isLoading=false,currentTab='signin';
+let userSkills=[],userOpenTo=[],userExperience=[];
 
+// ── INIT ──
 async function init(){
   if(window.location.hash==='#signup')switchTab('signup');
   const{data:{session}}=await sb.auth.getSession();
@@ -395,7 +527,10 @@ async function loginSuccess(user){
   currentUser=user;
   document.getElementById('auth-screen').classList.remove('visible');
   document.getElementById('app').style.display='flex';
-  await loadProfile();await loadChatHistory();await loadDraftsCount();
+  await loadProfile();
+  await loadChatHistory();
+  await loadDraftsCount();
+  loadPeople();
 }
 
 function showAuth(){
@@ -404,6 +539,7 @@ function showAuth(){
   document.getElementById('auth-screen').classList.add('visible');
 }
 
+// ── AUTH ──
 function switchTab(tab){
   currentTab=tab;
   document.getElementById('tab-signin').classList.toggle('active',tab==='signin');
@@ -441,43 +577,215 @@ async function signInWithGoogle(){
 async function signOut(){await sb.auth.signOut();}
 function showAuthError(msg){const e=document.getElementById('auth-error');e.textContent=msg;e.style.display='block';}
 
+// ── PROFILE ──
 async function loadProfile(){
   const{data}=await sb.from('profiles').select('*').eq('id',currentUser.id).single();
   if(data){
     userProfile=data;
-    ['name','title','company','location','about','icp'].forEach(f=>{
-      const el=document.getElementById('input-'+f);if(el)el.value=data[f]||'';
-    });
+    userSkills=data.skills||[];
+    userOpenTo=data.open_to||[];
+    userExperience=data.experience||[];
+    const fields=['name','title','company','location','about','icp','username','headline','website'];
+    fields.forEach(f=>{const el=document.getElementById('input-'+f);if(el&&data[f])el.value=data[f];});
   }else{
     const name=currentUser.user_metadata?.full_name||currentUser.email?.split('@')[0]||'';
-    document.getElementById('input-name').value=name;
+    if(name)document.getElementById('input-name').value=name;
     userProfile={name};
   }
   updateProfileDisplay();
+  renderSkills();
+  renderOpenTo();
+  renderExperience();
 }
 
 function updateProfileDisplay(){
   const name=document.getElementById('input-name').value||'Your Name';
-  const title=document.getElementById('input-title').value||'Your title';
+  const title=document.getElementById('input-title').value||'';
+  const company=document.getElementById('input-company').value||'';
+  const location=document.getElementById('input-location').value||'';
+  const website=document.getElementById('input-website').value||'';
+  const username=document.getElementById('input-username').value||'';
+  const headline=document.getElementById('input-headline').value||(title+(company?' at '+company:''));
   document.getElementById('profile-name-display').textContent=name;
-  document.getElementById('profile-headline-display').textContent=title;
+  document.getElementById('profile-headline-display').textContent=headline;
   document.getElementById('profile-av-display').textContent=ini(name);
   document.getElementById('sidebar-av').textContent=ini(name);
   document.getElementById('sidebar-name').textContent=name;
-  document.getElementById('sidebar-role').textContent=title;
+  document.getElementById('sidebar-role').textContent=title+(company?' · '+company:'');
+  const locEl=document.getElementById('profile-location-display');
+  if(locEl)locEl.textContent=location;
+  const urlEl=document.getElementById('profile-url-display');
+  if(urlEl&&website)urlEl.innerHTML='<a href="'+website+'" target="_blank" style="color:var(--blue);">'+website.replace('https://','')+'</a>';
+  const linkEl=document.getElementById('public-link');
+  if(linkEl)linkEl.textContent=username?'getclasp.io/u/'+username:'Fill in a username above';
 }
 
 async function saveProfile(){
-  const p={id:currentUser.id};
-  ['name','title','company','location','about','icp'].forEach(f=>{
-    p[f]=document.getElementById('input-'+f).value;
-  });
+  const p={
+    id:currentUser.id,
+    name:document.getElementById('input-name').value,
+    title:document.getElementById('input-title').value,
+    company:document.getElementById('input-company').value,
+    location:document.getElementById('input-location').value,
+    about:document.getElementById('input-about').value,
+    icp:document.getElementById('input-icp').value,
+    username:document.getElementById('input-username').value.toLowerCase().replace(/[^a-z0-9]/g,''),
+    headline:document.getElementById('input-headline').value,
+    website:document.getElementById('input-website').value,
+    skills:userSkills,
+    open_to:userOpenTo,
+    experience:userExperience,
+    is_public:true
+  };
   const{error}=await sb.from('profiles').upsert(p);
-  if(error){showToast('Error saving — please try again');return;}
+  if(error){
+    if(error.message.includes('unique'))showToast('Username already taken — try another!');
+    else showToast('Error saving — please try again');
+    return;
+  }
   userProfile=p;updateProfileDisplay();
-  showToast('Profile saved! Claude will use this to personalize your experience.');
+  showToast('Profile saved!');
 }
 
+// Skills
+function renderSkills(){
+  const wrap=document.getElementById('skills-display');
+  if(!wrap)return;
+  wrap.innerHTML=userSkills.map((s,i)=>'<span class="skill-tag removable" onclick="removeSkill('+i+')" title="Click to remove">'+s+' ×</span>').join('');
+}
+function addSkill(){
+  const input=document.getElementById('skill-input');
+  const val=input.value.trim();
+  if(!val||userSkills.includes(val))return;
+  userSkills.push(val);input.value='';renderSkills();
+}
+function removeSkill(i){userSkills.splice(i,1);renderSkills();}
+
+// Open To
+function renderOpenTo(){
+  const wrap=document.getElementById('opento-display');
+  if(!wrap)return;
+  wrap.innerHTML=userOpenTo.map((s,i)=>'<span class="open-tag" onclick="removeOpenTo('+i+')" style="cursor:pointer;" title="Click to remove">'+s+' ×</span>').join('');
+}
+function toggleOpenTo(val){
+  const idx=userOpenTo.indexOf(val);
+  if(idx>-1)userOpenTo.splice(idx,1);else userOpenTo.push(val);
+  renderOpenTo();
+}
+function removeOpenTo(i){userOpenTo.splice(i,1);renderOpenTo();}
+
+// Experience
+function renderExperience(){
+  const list=document.getElementById('exp-list');
+  if(!list)return;
+  if(!userExperience.length){list.innerHTML='<div style="font-size:0.8rem;color:var(--light);margin-bottom:8px;">No experience added yet.</div>';return;}
+  list.innerHTML=userExperience.map((e,i)=>'<div class="exp-item"><div style="display:flex;justify-content:space-between;"><div><div class="exp-title">'+e.title+'</div><div class="exp-company">'+e.company+'</div><div class="exp-dates">'+e.start+' — '+(e.end||'Present')+'</div>'+(e.desc?'<div style="font-size:0.78rem;color:var(--muted);margin-top:4px;">'+e.desc+'</div>':'')+'</div><button class="btn-sm btn-ghost" onclick="removeExp('+i+')" style="height:fit-content;">Remove</button></div></div>').join('');
+}
+function addExperience(){
+  const title=document.getElementById('exp-title').value.trim();
+  const company=document.getElementById('exp-company').value.trim();
+  if(!title||!company)return;
+  userExperience.unshift({title,company,start:document.getElementById('exp-start').value,end:document.getElementById('exp-end').value,desc:document.getElementById('exp-desc').value});
+  ['exp-title','exp-company','exp-start','exp-end','exp-desc'].forEach(id=>document.getElementById(id).value='');
+  renderExperience();
+}
+function removeExp(i){userExperience.splice(i,1);renderExperience();}
+
+function copyPublicLink(){
+  const username=document.getElementById('input-username').value;
+  if(!username){showToast('Add a username first!');return;}
+  navigator.clipboard.writeText('https://getclasp.io/u/'+username).then(()=>showToast('Profile link copied!'));
+}
+
+// ── PEOPLE DIRECTORY ──
+let allPeople=[];
+
+async function loadPeople(){
+  const{data}=await sb.from('profiles')
+    .select('id,name,title,company,location,skills,open_to,headline,username,about')
+    .eq('is_public',true)
+    .not('name','is',null)
+    .order('created_at',{ascending:false})
+    .limit(100);
+  allPeople=data||[];
+  renderPeople(allPeople);
+}
+
+function renderPeople(people){
+  const list=document.getElementById('people-list');
+  if(!list)return;
+  if(!people.length){
+    list.innerHTML='<div style="text-align:center;padding:48px;color:var(--light);font-size:0.88rem;">No members found. Be the first to complete your profile!</div>';
+    return;
+  }
+  const colors=['linear-gradient(135deg,#0A66C2,#00B4A6)','linear-gradient(135deg,#004182,#0073B1)','linear-gradient(135deg,#0073B1,#00B4A6)','linear-gradient(135deg,#1E3A5F,#0A66C2)','linear-gradient(135deg,#0A66C2,#004182)'];
+  list.innerHTML=people.filter(p=>p.name).map((p,idx)=>{
+    const skills=(p.skills||[]).slice(0,3).map(s=>'<span class="ptag">'+s+'</span>').join('');
+    const openTo=(p.open_to||[]).slice(0,2).map(s=>'<span class="otag">'+s+'</span>').join('');
+    return '<div class="person-card" onclick="openProfile(\''+p.id+'\')">'+
+      '<div class="person-av" style="background:'+colors[idx%colors.length]+'">'+ini(p.name)+'</div>'+
+      '<div style="flex:1;">'+
+        '<div class="person-name">'+p.name+'</div>'+
+        '<div class="person-role">'+(p.title||'')+(p.company?' · '+p.company:'')+'</div>'+
+        (p.location?'<div style="font-size:0.72rem;color:var(--light);margin-top:2px;">'+p.location+'</div>':'')+
+        (skills||openTo?'<div class="person-tags" style="margin-top:8px;">'+skills+openTo+'</div>':'')+
+      '</div>'+
+      '<div class="person-actions">'+
+        '<button class="btn-sm btn-dark" onclick="event.stopPropagation();draftOutreachFor(\''+p.name+'\',\''+(p.title||'')+(p.company?' at '+p.company:'')+'\')">✦ Draft outreach</button>'+
+        '<button class="btn-sm btn-ghost" onclick="event.stopPropagation();openProfile(\''+p.id+'\')">View profile</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function searchPeople(q){
+  if(!q){renderPeople(allPeople);return;}
+  const filtered=allPeople.filter(p=>{
+    const search=(p.name+' '+(p.title||'')+' '+(p.company||'')+' '+(p.skills||[]).join(' ')).toLowerCase();
+    return search.includes(q.toLowerCase());
+  });
+  renderPeople(filtered);
+}
+
+function filterByOpenTo(val){
+  const filtered=allPeople.filter(p=>(p.open_to||[]).includes(val));
+  renderPeople(filtered);
+}
+
+// ── PROFILE MODAL ──
+async function openProfile(userId){
+  const{data}=await sb.from('profiles').select('*').eq('id',userId).single();
+  if(!data)return;
+  const colors=['linear-gradient(135deg,#0A66C2,#00B4A6)','linear-gradient(135deg,#004182,#0073B1)'];
+  const skills=(data.skills||[]).map(s=>'<span class="skill-tag">'+s+'</span>').join('');
+  const openTo=(data.open_to||[]).map(s=>'<span class="open-tag">'+s+'</span>').join('');
+  const exp=(data.experience||[]).map(e=>'<div class="exp-item"><div class="exp-title">'+e.title+'</div><div class="exp-company">'+e.company+'</div><div class="exp-dates">'+e.start+' — '+(e.end||'Present')+'</div>'+(e.desc?'<div style="font-size:0.78rem;color:var(--muted);margin-top:4px;">'+e.desc+'</div>':'')+'</div>').join('');
+
+  document.getElementById('modal-body').innerHTML=
+    '<div style="height:80px;background:linear-gradient(135deg,'+( colors[0])+')"></div>'+
+    '<div style="padding:0 24px 24px;">'+
+      '<div style="margin-top:-28px;margin-bottom:10px;">'+
+        '<div style="width:56px;height:56px;border-radius:50%;border:3px solid white;background:'+colors[0]+';display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.1rem;">'+ini(data.name)+'</div>'+
+      '</div>'+
+      '<div style="font-family:Syne,sans-serif;font-size:1.2rem;font-weight:700;color:var(--blue-deep);">'+data.name+'</div>'+
+      '<div style="font-size:0.88rem;color:var(--muted);margin-top:2px;">'+(data.headline||((data.title||'')+(data.company?' at '+data.company:'')))+'</div>'+
+      (data.location?'<div style="font-size:0.78rem;color:var(--light);margin-top:4px;">'+data.location+'</div>':'')+
+      (data.about?'<div style="margin-top:16px;font-size:0.85rem;line-height:1.7;color:var(--text);">'+data.about+'</div>':'')+
+      (openTo?'<div style="margin-top:16px;"><div style="font-size:0.75rem;font-weight:600;color:var(--muted);margin-bottom:6px;">OPEN TO</div><div style="display:flex;flex-wrap:wrap;gap:6px;">'+openTo+'</div></div>':'')+
+      (skills?'<div style="margin-top:16px;"><div style="font-size:0.75rem;font-weight:600;color:var(--muted);margin-bottom:6px;">SKILLS</div><div style="display:flex;flex-wrap:wrap;gap:6px;">'+skills+'</div></div>':'')+
+      (exp?'<div style="margin-top:16px;"><div style="font-size:0.75rem;font-weight:600;color:var(--muted);margin-bottom:6px;">EXPERIENCE</div>'+exp+'</div>':'')+
+      '<div style="margin-top:20px;display:flex;gap:8px;">'+
+        '<button class="btn-sm btn-dark" onclick="draftOutreachFor(\''+data.name+'\',\''+(data.title||'')+(data.company?' at '+data.company:'')+'\');closeProfileModal()">✦ Draft outreach</button>'+
+        (data.website?'<a href="'+data.website+'" target="_blank" class="btn-sm btn-ghost" style="text-decoration:none;">Website ↗</a>':'')+
+      '</div>'+
+    '</div>';
+
+  document.getElementById('profile-modal').classList.add('open');
+}
+
+function closeProfileModal(){document.getElementById('profile-modal').classList.remove('open');}
+
+// ── CHAT ──
 async function loadChatHistory(){
   const{data}=await sb.from('chats').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:true}).limit(50);
   if(data&&data.length>0){
@@ -536,9 +844,18 @@ async function clearChat(){
 
 function getSys(){
   const p=userProfile;
-  return 'You are the Clasp Agent — an AI-powered professional networking assistant.\nHelping '+( p.name||'a professional')+', '+(p.title||'a professional')+' at '+(p.company||'their company')+', '+(p.location||'their city')+'.\nAbout: '+(p.about||'')+'\nICP: '+(p.icp||'')+'\nHelp with: finding leads, drafting outreach, researching companies, networking strategy. Keep responses practical and human. Sign outreach from '+(p.name||'the user')+'.';
+  const expStr=(p.experience||[]).map(e=>e.title+' at '+e.company).join(', ');
+  return 'You are the Clasp Agent — an AI-powered professional networking assistant.\n'+
+    'Helping '+(p.name||'a professional')+', '+(p.title||'a professional')+' at '+(p.company||'their company')+', '+(p.location||'their city')+'.\n'+
+    'Headline: '+(p.headline||'')+'\n'+
+    'About: '+(p.about||'')+'\n'+
+    'Skills: '+(p.skills||[]).join(', ')+'\n'+
+    'Experience: '+expStr+'\n'+
+    'ICP: '+(p.icp||'')+'\n'+
+    'Help with: finding leads, drafting outreach, researching companies, networking strategy. Keep responses practical and human. Sign outreach from '+(p.name||'the user')+'.';
 }
 
+// ── OUTREACH ──
 async function generateOutreach(){
   const name=document.getElementById('outreach-name').value;
   const role=document.getElementById('outreach-role').value;
@@ -561,8 +878,9 @@ async function saveDraft(){
   const role=document.getElementById('outreach-role').value;
   const type=document.getElementById('outreach-type').value;
   const content=document.getElementById('outreach-text').textContent;
-  if(!content||content==='Generating…')return;
-  await sb.from('drafts').insert({user_id:currentUser.id,recipient_name:name,recipient_role:role,message_type:type,content});
+  if(!content||content==='Generating…'){showToast('Generate a message first');return;}
+  const{error}=await sb.from('drafts').insert({user_id:currentUser.id,recipient_name:name,recipient_role:role,message_type:type,content});
+  if(error){showToast('Error saving draft');return;}
   showToast('Draft saved!');await loadDraftsCount();
 }
 
@@ -575,14 +893,14 @@ async function loadDraftsList(){
   const{data}=await sb.from('drafts').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false});
   const list=document.getElementById('drafts-list');
   if(!data||data.length===0){list.innerHTML='<div style="text-align:center;padding:48px;color:var(--light);font-size:0.88rem;">No drafts saved yet.</div>';return;}
-  list.innerHTML=data.map(d=>'<div class="draft-card"><div class="draft-meta"><div class="draft-to">To: '+d.recipient_name+(d.recipient_role?' · '+d.recipient_role:'')+' </div><span class="draft-type">'+((d.message_type||'').replace('-',' '))+'</span></div><div class="draft-content">'+d.content+'</div><div class="draft-time">'+new Date(d.created_at).toLocaleDateString()+'</div></div>').join('');
+  list.innerHTML=data.map(d=>'<div class="draft-card"><div class="draft-meta"><div class="draft-to">To: '+d.recipient_name+(d.recipient_role?' · '+d.recipient_role:'')+' </div><span class="draft-type">'+((d.message_type||'').replace('-',' '))+'</span></div><div class="draft-content">'+d.content+'</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;"><span class="draft-time">'+new Date(d.created_at).toLocaleDateString()+'</span><button class="btn-sm btn-ghost" onclick="navigator.clipboard.writeText(\''+d.content.replace(/'/g,"\\'")+'\').then(()=>showToast(\'Copied!\'))">Copy</button></div></div>').join('');
 }
 
 function copyOutreach(){navigator.clipboard.writeText(document.getElementById('outreach-text').textContent).then(()=>showToast('Copied!'));}
 function draftOutreachFor(name,role){switchScreen('outreach',document.querySelectorAll('.nav-item')[3]);setTimeout(()=>{document.getElementById('outreach-name').value=name;document.getElementById('outreach-role').value=role;},50);}
 function askClaudeToSearch(){switchScreen('agent',document.querySelectorAll('.nav-item')[0]);setTimeout(()=>{document.getElementById('chat-input').value='Find me leads matching my ICP: '+(userProfile.icp||'VP Sales at Series B+ SaaS');sendMessage();},100);}
-function filterPeople(q){document.querySelectorAll('.person-card').forEach(c=>{c.style.display=c.dataset.search?.includes(q.toLowerCase())?'flex':'none';});}
 
+// ── UI ──
 function appendMsg(role,text,scroll){
   const area=document.getElementById('chat-area');
   const isAgent=role==='agent'||role==='assistant';
@@ -608,9 +926,10 @@ function switchScreen(name,el){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('screen-'+name)?.classList.add('active');
   if(el)el.classList.add('active');
-  const titles={agent:'Claude Agent',profile:'My Profile',search:'Find People',outreach:'Draft Outreach',drafts:'Saved Drafts'};
+  const titles={agent:'Claude Agent',profile:'My Profile',people:'People',outreach:'Draft Outreach',drafts:'Saved Drafts'};
   document.getElementById('page-title').textContent=titles[name]||name;
   if(name==='drafts')loadDraftsList();
+  if(name==='people')loadPeople();
 }
 
 function sendSuggestion(el){document.getElementById('chat-input').value=el.textContent;sendMessage();}
@@ -621,7 +940,7 @@ function openSpotlight(){document.getElementById('spotlight').classList.add('ope
 function closeSpotlight(){document.getElementById('spotlight').classList.remove('open');}
 function spotAction(text){if(!text.trim())return;closeSpotlight();document.getElementById('spot-input').value='';switchScreen('agent',document.querySelectorAll('.nav-item')[0]);setTimeout(()=>{document.getElementById('chat-input').value=text;sendMessage();},100);}
 function showToast(msg){const t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openSpotlight();}if(e.key==='Escape')closeSpotlight();});
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openSpotlight();}if(e.key==='Escape'){closeSpotlight();closeProfileModal();}});
 init();
 </script>
 </body>
