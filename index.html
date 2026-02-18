@@ -537,7 +537,8 @@
     <a href="#integrations">Integrations</a>
     <a href="#waitlist">Join Waitlist</a>
   </div>
-  <button class="nav-cta" onclick="window.location.href='/app.html#signup'">Get Early Access</button>
+  <a href="/app.html" style="color:var(--blue);font-size:0.9rem;font-weight:500;text-decoration:none;margin-right:8px;">Sign In</a>
+  <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get Early Access</button>
 </nav>
 
 <!-- HERO -->
@@ -551,7 +552,7 @@
   <h1>Professional networking<br>you can <span>talk to</span></h1>
   <p class="hero-sub">Clasp is the LinkedIn alternative where Claude can pull your leads, push your outreach, sync your CRM, and do the tedious work — so you can focus on actual relationships.</p>
   <div class="hero-actions">
-    <button class="btn-primary" onclick="window.location.href='/app.html#signup'">Get Early Access — It's Free</button>
+    <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get Early Access — It's Free</button>
     <button class="btn-secondary" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">See How It Works ↓</button>
   </div>
 </section>
@@ -841,7 +842,7 @@
           <input class="wl-input" type="text" id="wl-frustration" placeholder="Biggest LinkedIn frustration? (optional)" />
         </div>
         <div id="wl-error" class="wl-error" style="display:none;">Please enter a valid email address.</div>
-        <button class="wl-submit" type="submit" id="wl-btn" onclick="if(document.getElementById('wl-email').value) setTimeout(()=>window.location.href='/app.html#signup', 1500)">
+        <button class="wl-submit" type="submit" id="wl-btn" onclick="if(document.getElementById('wl-email').value) setTimeout(()=>document.getElementById('waitlist').scrollIntoView({behavior:'smooth'}), 1500)">
           <span id="wl-btn-text">Reserve My Spot →</span>
         </button>
         <p class="wl-privacy">No spam. No credit card. Unsubscribe any time.</p>
