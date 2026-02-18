@@ -823,7 +823,7 @@
 
     <!-- FORM STATE -->
     <div id="waitlist-form-wrap">
-      <form class="waitlist-form" id="waitlist-form" onsubmit="submitWaitlist(event)">
+      <form class="waitlist-form" id="waitlist-form" onsubmit="submitWaitlist(event)" action="https://formspree.io/f/xjgeovpn" method="POST">
         <div class="wl-row">
           <input class="wl-input" type="text" id="wl-name" placeholder="Your name" autocomplete="name" />
           <input class="wl-input" type="email" id="wl-email" placeholder="Your work email" required autocomplete="email" />
@@ -943,7 +943,7 @@
     }
   }, 8000);
 
-  function submitWaitlist(e) {
+  async function submitWaitlist(e) {
     e.preventDefault();
     const email = document.getElementById('wl-email').value;
     const errorEl = document.getElementById('wl-error');
@@ -961,29 +961,35 @@
     btn.disabled = true;
     btnText.textContent = 'Saving your spot…';
 
-    // Collect data
-    const entry = {
-      name: document.getElementById('wl-name').value,
-      email: email,
-      role: document.getElementById('wl-role').value,
-      frustration: document.getElementById('wl-frustration').value,
-      timestamp: new Date().toISOString()
-    };
+    // Send to Formspree
+    try {
+      const response = await fetch('https://formspree.io/f/xjgeovpn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: document.getElementById('wl-name').value,
+          email: email,
+          role: document.getElementById('wl-role').value,
+          frustration: document.getElementById('wl-frustration').value
+        })
+      });
 
-    // Store locally (you'll connect a real backend later)
-    const existing = JSON.parse(localStorage.getItem('clasp_waitlist') || '[]');
-    existing.push(entry);
-    localStorage.setItem('clasp_waitlist', JSON.stringify(existing));
-
-    // Bump counter
-    count++;
-    counterEl.textContent = count;
-
-    // Show success after brief delay
-    setTimeout(() => {
-      document.getElementById('waitlist-form-wrap').style.display = 'none';
-      document.getElementById('waitlist-success').style.display = 'block';
-    }, 800);
+      if (response.ok) {
+        count++;
+        counterEl.textContent = count;
+        setTimeout(() => {
+          document.getElementById('waitlist-form-wrap').style.display = 'none';
+          document.getElementById('waitlist-success').style.display = 'block';
+        }, 800);
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      btn.disabled = false;
+      btnText.textContent = 'Reserve My Spot →';
+      errorEl.textContent = 'Something went wrong — please try again.';
+      errorEl.style.display = 'block';
+    }
   }
 
   function shareWaitlist() {
