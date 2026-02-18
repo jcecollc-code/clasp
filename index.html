@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clasp — Professional Networking for the Agent Era</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0A66C2;
+    --blue-dark: #004182;
+    --blue-deep: #001B3D;
+    --blue-mid: #0073B1;
+    --blue-light: #E8F3FF;
+    --blue-glow: rgba(10,102,194,0.18);
+    --white: #FFFFFF;
+    --off-white: #F3F8FF;
+    --text: #1A1A2E;
+    --muted: #4A6580;
+    --accent: #00C4B4;
+    --accent2: #FFB547;
+    --border: rgba(10,102,194,0.15);
+    --card-bg: rgba(255,255,255,0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    overflow-x: hidden;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 64px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.5rem;
+    color: var(--blue-dark);
+    letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 18px; height: 18px; }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue); color: white;
+    border: none; padding: 8px 20px;
+    border-radius: 20px; font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    font-family: 'Outfit', sans-serif;
+  }
+  .nav-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(10,102,194,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0,196,180,0.08) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 30%, black 0%, transparent 80%);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-light); border: 1px solid var(--border);
+    color: var(--blue); padding: 6px 16px; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 500; margin-bottom: 2rem;
+    position: relative;
+    animation: fadeUp 0.6s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.4); }
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--blue-deep);
+    max-width: 900px;
+    position: relative;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  h1 span {
+    color: var(--blue);
+    position: relative;
+  }
+  h1 span::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 0; right: 0; height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--muted); max-width: 600px;
+    line-height: 1.7; margin: 1.5rem 0 2.5rem;
+    font-weight: 400;
+    position: relative;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    position: relative;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--blue); color: white;
+    padding: 14px 32px; border-radius: 30px;
+    font-size: 1rem; font-weight: 500; border: none; cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(10,102,194,0.35);
+  }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(10,102,194,0.4); }
+  .btn-secondary {
+    background: transparent; color: var(--blue);
+    padding: 14px 32px; border-radius: 30px;
+    font-size: 1rem; font-weight: 500;
+    border: 1.5px solid var(--blue);
+    cursor: pointer; font-family: 'Outfit', sans-serif;
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── APP PREVIEW ─── */
+  .app-preview-section {
+    padding: 0 5% 100px;
+    display: flex; justify-content: center;
+  }
+  .app-window {
+    width: 100%; max-width: 1100px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 30px 80px rgba(0,30,80,0.15), 0 0 0 1px var(--border);
+    overflow: hidden;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .window-bar {
+    height: 40px; background: #F0F5FA;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; padding: 0 16px; gap: 8px;
+  }
+  .window-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .app-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr 300px;
+    min-height: 560px;
+  }
+
+  /* ─── APP SIDEBAR ─── */
+  .app-sidebar {
+    background: var(--blue-deep);
+    padding: 20px 0;
+    display: flex; flex-direction: column;
+  }
+  .sidebar-user {
+    padding: 16px 20px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 12px;
+  }
+  .user-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .user-name { color: white; font-size: 0.85rem; font-weight: 600; }
+  .user-title { color: rgba(255,255,255,0.5); font-size: 0.72rem; margin-top: 2px; }
+  .sidebar-nav { flex: 1; }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 20px;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.82rem; cursor: pointer;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .nav-item:hover, .nav-item.active {
+    color: white; background: rgba(255,255,255,0.06);
+    border-left-color: var(--accent);
+  }
+  .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* ─── APP MAIN ─── */
+  .app-main { padding: 24px; background: var(--off-white); overflow: hidden; }
+  .main-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .main-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--blue-deep);
+  }
+  .search-bar {
+    display: flex; align-items: center; gap: 8px;
+    background: white; border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px;
+    font-size: 0.82rem; color: var(--muted);
+    width: 220px;
+  }
+  .search-bar svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .profile-cards { display: flex; flex-direction: column; gap: 12px; }
+  .profile-card {
+    background: white; border-radius: 12px;
+    padding: 16px; border: 1px solid var(--border);
+    display: flex; gap: 14px; align-items: flex-start;
+    transition: box-shadow 0.2s;
+  }
+  .profile-card:hover { box-shadow: 0 4px 16px var(--blue-glow); }
+  .p-avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 0.9rem;
+  }
+  .p-info { flex: 1; }
+  .p-name { font-size: 0.88rem; font-weight: 600; color: var(--blue-deep); }
+  .p-role { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .p-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 0.68rem; padding: 2px 8px; border-radius: 10px;
+    background: var(--blue-light); color: var(--blue); font-weight: 500;
+  }
+  .p-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+  .btn-connect {
+    background: var(--blue); color: white;
+    border: none; padding: 6px 14px; border-radius: 14px;
+    font-size: 0.75rem; cursor: pointer; font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+  }
+  .btn-agent {
+    background: var(--accent); color: white;
+    border: none; padding: 6px 12px; border-radius: 14px;
+    font-size: 0.72rem; cursor: pointer; font-family: 'Outfit', sans-serif;
+    font-weight: 500; display: flex; align-items: center; gap: 4px;
+    white-space: nowrap;
+  }
+
+  /* ─── APP AGENT PANEL ─── */
+  .agent-panel {
+    background: white;
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column;
+  }
+  .agent-header {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .agent-orb {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .agent-orb::after {
+    content: '';
+    position: absolute; inset: -3px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    opacity: 0.4;
+    animation: orbPulse 2s infinite;
+  }
+  @keyframes orbPulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.15); opacity: 0.1; }
+  }
+  .agent-orb svg { width: 16px; height: 16px; }
+  .agent-title { font-size: 0.85rem; font-weight: 700; color: var(--blue-deep); }
+  .agent-sub { font-size: 0.7rem; color: var(--accent); font-weight: 500; }
+  .agent-chat { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+  .chat-bubble {
+    border-radius: 12px; padding: 10px 14px;
+    font-size: 0.78rem; line-height: 1.5; max-width: 90%;
+  }
+  .bubble-agent {
+    background: var(--blue-light); color: var(--blue-deep);
+    border-bottom-left-radius: 4px;
+  }
+  .bubble-user {
+    background: var(--blue); color: white;
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+  }
+  .bubble-action {
+    background: rgba(0,196,180,0.1); color: var(--text);
+    border: 1px solid rgba(0,196,180,0.25);
+    font-size: 0.73rem;
+  }
+  .action-row { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .action-chip {
+    background: var(--accent); color: white;
+    font-size: 0.65rem; padding: 2px 8px; border-radius: 8px; font-weight: 600;
+  }
+  .agent-input-row {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 8px; align-items: center;
+  }
+  .agent-input {
+    flex: 1; background: var(--off-white);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 12px; font-size: 0.78rem;
+    color: var(--text); font-family: 'Outfit', sans-serif;
+    outline: none;
+  }
+  .send-btn {
+    background: var(--blue); border: none; border-radius: 8px;
+    width: 32px; height: 32px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION: HOW IT WORKS ─── */
+  .section { padding: 100px 5%; }
+  .section-label {
+    text-align: center;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 1rem;
+  }
+  .section-title {
+    text-align: center;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800; color: var(--blue-deep);
+    letter-spacing: -1px; margin-bottom: 1rem;
+    max-width: 700px; margin-left: auto; margin-right: auto;
+  }
+  .section-sub {
+    text-align: center; color: var(--muted);
+    font-size: 1rem; max-width: 560px;
+    margin: 0 auto 4rem; line-height: 1.7;
+  }
+
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem; max-width: 1100px; margin: 0 auto;
+  }
+  .step-card {
+    background: white; border-radius: 16px;
+    padding: 32px 28px; border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .step-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--blue-glow); }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800;
+    color: var(--blue-light); position: absolute;
+    top: 16px; right: 20px; line-height: 1;
+    pointer-events: none;
+  }
+  .step-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--blue-light); display: flex; align-items: center;
+    justify-content: center; margin-bottom: 1.2rem;
+  }
+  .step-icon svg { width: 24px; height: 24px; }
+  .step-card h3 {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.1rem; color: var(--blue-deep); margin-bottom: 0.5rem;
+  }
+  .step-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* ─── FEATURES ─── */
+  .features-section { background: var(--blue-deep); padding: 100px 5%; }
+  .features-section .section-title { color: white; }
+  .features-section .section-sub { color: rgba(255,255,255,0.5); }
+  .features-section .section-label { color: var(--accent); }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .feature-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 28px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .feature-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--accent);
+  }
+  .feature-icon { font-size: 1.8rem; margin-bottom: 14px; }
+  .feature-card h3 {
+    font-family: 'Syne', sans-serif; font-size: 1rem;
+    font-weight: 700; color: white; margin-bottom: 8px;
+  }
+  .feature-card p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+  /* ─── INTEGRATIONS ─── */
+  .integrations-section { padding: 80px 5%; background: white; }
+  .integration-logos {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    justify-content: center; max-width: 800px; margin: 0 auto;
+  }
+  .int-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--off-white); border: 1px solid var(--border);
+    border-radius: 30px; padding: 8px 20px;
+    font-size: 0.85rem; font-weight: 500; color: var(--text);
+    transition: all 0.2s;
+  }
+  .int-pill:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+  .int-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 120px 5%;
+    text-align: center;
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-dark) 60%, #00243F 100%);
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,196,180,0.12), transparent);
+  }
+  .cta-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800; color: white;
+    letter-spacing: -1.5px; position: relative;
+    max-width: 700px; margin: 0 auto 1rem;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,0.6); font-size: 1.1rem;
+    max-width: 500px; margin: 0 auto 2.5rem; position: relative;
+  }
+  .cta-section .btn-primary {
+    background: var(--accent); position: relative;
+    box-shadow: 0 8px 30px rgba(0,196,180,0.4);
+  }
+  .cta-section .btn-primary:hover { background: #00a99a; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0A0F1E; color: rgba(255,255,255,0.4);
+    padding: 40px 5%; text-align: center;
+    font-size: 0.82rem;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; color: white; font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  /* ─── TABS ─── */
+  .view-tabs {
+    display: flex; justify-content: center; gap: 1rem;
+    margin-bottom: -1px; position: relative; z-index: 2;
+  }
+  .view-tab {
+    padding: 10px 28px; border-radius: 8px 8px 0 0;
+    background: transparent; border: 1px solid var(--border);
+    border-bottom: none; cursor: pointer;
+    font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 500;
+    color: var(--muted); transition: all 0.2s;
+  }
+  .view-tab.active { background: white; color: var(--blue); }
+
+  @media (max-width: 768px) {
+    .app-layout { grid-template-columns: 1fr; }
+    .app-sidebar, .agent-panel { display: none; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 9h10M9 4l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    Clasp
+  </div>
+  <div class="nav-links">
+    <a href="#">Features</a>
+    <a href="#">Integrations</a>
+    <a href="#">Pricing</a>
+    <a href="#">Docs</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get Early Access</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Built for the Agent Era
+  </div>
+  <h1>Professional networking<br>you can <span>talk to</span></h1>
+  <p class="hero-sub">Clasp is the LinkedIn alternative where Claude can pull your leads, push your outreach, sync your CRM, and do the tedious work — so you can focus on actual relationships.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get Early Access — It's Free</button>
+    <button class="btn-secondary" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">See How It Works ↓</button>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<div class="app-preview-section">
+  <div class="app-window">
+    <div class="window-bar">
+      <div class="window-dot" style="background:#FF5F57"></div>
+      <div class="window-dot" style="background:#FFBD2E"></div>
+      <div class="window-dot" style="background:#28CA41"></div>
+    </div>
+    <div class="app-layout">
+
+      <!-- SIDEBAR -->
+      <div class="app-sidebar">
+        <div class="sidebar-user">
+          <div class="user-avatar">JS</div>
+          <div class="user-name">Jordan Smith</div>
+          <div class="user-title">VP Sales · TechCorp</div>
+        </div>
+        <div class="sidebar-nav">
+          <div class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Network
+          </div>
+          <div class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Search
+          </div>
+          <div class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Messages
+          </div>
+          <div class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            CRM Sync
+          </div>
+          <div class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Analytics
+          </div>
+          <div class="nav-item" style="margin-top: auto;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 1 4.93 19.07 10 10 0 0 1 19.07 4.93z"/></svg>
+            Settings
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN -->
+      <div class="app-main">
+        <div class="main-header">
+          <h2>Suggested Connections</h2>
+          <div class="search-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Search Clasp...
+          </div>
+        </div>
+        <div class="profile-cards">
+          <div class="profile-card">
+            <div class="p-avatar" style="background: linear-gradient(135deg, #0A66C2, #00C4B4)">AM</div>
+            <div class="p-info">
+              <div class="p-name">Alex Morgan</div>
+              <div class="p-role">Head of Partnerships · Stripe</div>
+              <div class="p-tags">
+                <span class="tag">FinTech</span>
+                <span class="tag">Partnerships</span>
+                <span class="tag">API</span>
+              </div>
+            </div>
+            <div class="p-actions">
+              <button class="btn-agent">✦ Ask Claude</button>
+              <button class="btn-connect">Connect</button>
+            </div>
+          </div>
+          <div class="profile-card">
+            <div class="p-avatar" style="background: linear-gradient(135deg, #004182, #0A66C2)">RC</div>
+            <div class="p-info">
+              <div class="p-name">Riley Chen</div>
+              <div class="p-role">VP Product · Notion</div>
+              <div class="p-tags">
+                <span class="tag">Product</span>
+                <span class="tag">B2B SaaS</span>
+              </div>
+            </div>
+            <div class="p-actions">
+              <button class="btn-agent">✦ Ask Claude</button>
+              <button class="btn-connect">Connect</button>
+            </div>
+          </div>
+          <div class="profile-card">
+            <div class="p-avatar" style="background: linear-gradient(135deg, #0073B1, #004182)">TK</div>
+            <div class="p-info">
+              <div class="p-name">Taylor Kim</div>
+              <div class="p-role">Director of Sales · HubSpot</div>
+              <div class="p-tags">
+                <span class="tag">CRM</span>
+                <span class="tag">Sales Ops</span>
+                <span class="tag">RevOps</span>
+              </div>
+            </div>
+            <div class="p-actions">
+              <button class="btn-agent">✦ Ask Claude</button>
+              <button class="btn-connect">Connect</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGENT PANEL -->
+      <div class="agent-panel">
+        <div class="agent-header">
+          <div class="agent-orb">
+            <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L9.5 8.5H3L8.5 12.5L6 19L12 15L18 19L15.5 12.5L21 8.5H14.5L12 2Z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="agent-title">Clasp Agent</div>
+            <div class="agent-sub">● Connected to HubSpot + Gmail</div>
+          </div>
+        </div>
+        <div class="agent-chat">
+          <div class="chat-bubble bubble-agent">
+            Hi Jordan! I found 3 warm leads from your ICP — all VP+ at Series B+ companies. Want me to draft outreach?
+          </div>
+          <div class="chat-bubble bubble-user">
+            Yes, and add them to my HubSpot pipeline
+          </div>
+          <div class="chat-bubble bubble-agent">
+            Done! I've drafted personalized messages for each. Here's what I sent Alex Morgan:
+          </div>
+          <div class="chat-bubble bubble-action">
+            <div>"Hi Alex — saw your work scaling Stripe's partner API ecosystem. I'd love to explore..."</div>
+            <div class="action-row">
+              <span class="action-chip">✓ Sent</span>
+              <span class="action-chip" style="background: var(--blue);">✓ HubSpot</span>
+            </div>
+          </div>
+          <div class="chat-bubble bubble-agent">
+            All 3 added to your "Q1 Outreach" pipeline. Want me to set follow-up reminders?
+          </div>
+        </div>
+        <div class="agent-input-row">
+          <input class="agent-input" type="text" placeholder="Ask Claude to do anything..." />
+          <button class="send-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">From "I need leads" to "Done" in seconds</h2>
+  <p class="section-sub">Stop clicking through interfaces. Just tell Claude what you need and watch it work across your entire stack.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A66C2" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+      </div>
+      <h3>Build your profile</h3>
+      <p>Import from LinkedIn or start fresh. Claude fills gaps, suggests improvements, and keeps it in sync with your CRM automatically.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A66C2" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <h3>Search by intent</h3>
+      <p>Tell Claude "find me VPs of Sales at Series B SaaS companies in the Bay Area who are actively hiring." Natural language, real results.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A66C2" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3>Outreach that doesn't suck</h3>
+      <p>Claude drafts personalized messages based on their actual profile, your shared context, and your tone. Review, edit, approve — or let it fly.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A66C2" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3>Push to your stack</h3>
+      <p>Every connection, conversation, and follow-up syncs to HubSpot, Salesforce, your calendar, or wherever you need it. No copy-paste ever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="section-label">Features</div>
+  <h2 class="section-title">Everything LinkedIn can't do</h2>
+  <p class="section-sub">Because a professional network in 2026 should work for you, not make you work for it.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">✦</div>
+      <h3>Natural Language Everything</h3>
+      <p>Search, filter, message, manage — all via plain English. No more navigating 7 menus to send a connection request.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Agent API Access</h3>
+      <p>Full read/write API so your Claude agents can act on your behalf. Clasp is built to be orchestrated, not just browsed.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <h3>Real CRM Sync</h3>
+      <p>Two-way sync with HubSpot, Salesforce, and Pipedrive. When you connect with someone, they appear in your pipeline. Automatically.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Intent-Based Discovery</h3>
+      <p>Find people based on what they're signaling — hiring, raising, launching, speaking — not just their job title.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📬</div>
+      <h3>Inbox That Works</h3>
+      <p>Threaded conversations, AI-suggested replies, auto-routing to Gmail or Outlook. Your messages, your workflow.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>Anti-Slop Guardrails</h3>
+      <p>Rate limits and quality filters so agents can't spam. Real connections only — Clasp is an open platform, not a chaotic one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="integrations-section">
+  <div class="section-label">Integrations</div>
+  <h2 class="section-title">Plugs into your whole stack</h2>
+  <p class="section-sub" style="margin-bottom: 2.5rem;">Connect once. Claude handles the rest.</p>
+  <div class="integration-logos">
+    <div class="int-pill"><span class="int-dot"></span> HubSpot</div>
+    <div class="int-pill"><span class="int-dot"></span> Salesforce</div>
+    <div class="int-pill"><span class="int-dot"></span> Gmail</div>
+    <div class="int-pill"><span class="int-dot"></span> Outlook</div>
+    <div class="int-pill"><span class="int-dot"></span> Notion</div>
+    <div class="int-pill"><span class="int-dot"></span> Slack</div>
+    <div class="int-pill"><span class="int-dot"></span> Pipedrive</div>
+    <div class="int-pill"><span class="int-dot"></span> Zapier</div>
+    <div class="int-pill"><span class="int-dot"></span> Clay</div>
+    <div class="int-pill"><span class="int-dot"></span> Apollo</div>
+    <div class="int-pill"><span class="int-dot" style="background: #666; opacity: 0.4;"></span> + More coming</div>
+  </div>
+</section>
+
+<!-- CTA / WAITLIST -->
+<section class="cta-section" id="waitlist">
+  <div style="position:relative;">
+    <div class="waitlist-counter" id="counter-display">
+      <span class="counter-dot"></span>
+      <span id="counter-num">247</span> people already on the waitlist
+    </div>
+    <h2>Stop clicking.<br>Start connecting.</h2>
+    <p>Clasp is in early access. Drop your email and we'll let you in first — no spam, ever.</p>
+
+    <!-- FORM STATE -->
+    <div id="waitlist-form-wrap">
+      <form class="waitlist-form" id="waitlist-form" onsubmit="submitWaitlist(event)">
+        <div class="wl-row">
+          <input class="wl-input" type="text" id="wl-name" placeholder="Your name" autocomplete="name" />
+          <input class="wl-input" type="email" id="wl-email" placeholder="Your work email" required autocomplete="email" />
+        </div>
+        <div class="wl-row">
+          <select class="wl-input wl-select" id="wl-role">
+            <option value="" disabled selected>Your role</option>
+            <option>Sales / Revenue</option>
+            <option>Founder / CEO</option>
+            <option>Recruiting / HR</option>
+            <option>Marketing / Partnerships</option>
+            <option>Investor / VC</option>
+            <option>Other</option>
+          </select>
+          <input class="wl-input" type="text" id="wl-frustration" placeholder="Biggest LinkedIn frustration? (optional)" />
+        </div>
+        <div id="wl-error" class="wl-error" style="display:none;">Please enter a valid email address.</div>
+        <button class="wl-submit" type="submit" id="wl-btn">
+          <span id="wl-btn-text">Reserve My Spot →</span>
+        </button>
+        <p class="wl-privacy">No spam. No credit card. Unsubscribe any time.</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="waitlist-success" style="display:none;">
+      <div class="wl-success-box">
+        <div class="wl-success-icon">✓</div>
+        <div class="wl-success-title">You're on the list!</div>
+        <div class="wl-success-msg">We'll be in touch soon. In the meantime, tell a colleague — the more the merrier.</div>
+        <button class="wl-share-btn" onclick="shareWaitlist()">Share Clasp with a colleague</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .waitlist-counter {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8); padding: 6px 16px; border-radius: 20px;
+    font-size: 0.82rem; font-weight: 500; margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+  }
+  .counter-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #00C4B4;
+    animation: pulse 2s infinite;
+  }
+  .waitlist-form { width: 100%; max-width: 580px; margin: 0 auto; }
+  .wl-row {
+    display: flex; gap: 10px; margin-bottom: 10px;
+  }
+  .wl-input {
+    flex: 1; background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 10px; padding: 12px 16px;
+    font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+    color: white; outline: none; transition: border-color 0.2s;
+    min-width: 0;
+  }
+  .wl-input::placeholder { color: rgba(255,255,255,0.45); }
+  .wl-input:focus { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.16); }
+  .wl-select { cursor: pointer; }
+  .wl-select option { color: #1A1A2E; background: white; }
+  .wl-error { color: #FFB3B3; font-size: 0.8rem; margin-bottom: 8px; text-align: left; max-width: 580px; margin-left: auto; margin-right: auto; }
+  .wl-submit {
+    width: 100%; max-width: 580px;
+    background: #00C4B4; color: white; border: none;
+    border-radius: 10px; padding: 14px 24px;
+    font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; margin-top: 4px;
+    box-shadow: 0 4px 20px rgba(0,196,180,0.4);
+  }
+  .wl-submit:hover { background: #00a99a; transform: translateY(-1px); box-shadow: 0 8px 30px rgba(0,196,180,0.5); }
+  .wl-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+  .wl-privacy { color: rgba(255,255,255,0.35); font-size: 0.75rem; margin-top: 10px; }
+
+  .wl-success-box {
+    max-width: 440px; margin: 0 auto;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px; padding: 40px 32px;
+  }
+  .wl-success-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #00C4B4; color: white;
+    font-size: 1.4rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .wl-success-title {
+    font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+    color: white; margin-bottom: 8px;
+  }
+  .wl-success-msg { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+  .wl-share-btn {
+    background: transparent; border: 1.5px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8); border-radius: 8px;
+    padding: 10px 20px; font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+  }
+  .wl-share-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+  @media (max-width: 560px) {
+    .wl-row { flex-direction: column; }
+  }
+</style>
+
+<script>
+  // Simulate a live counter that ticks up slowly
+  let count = 247;
+  const counterEl = document.getElementById('counter-num');
+  setInterval(() => {
+    if (Math.random() > 0.7) {
+      count++;
+      counterEl.textContent = count;
+    }
+  }, 8000);
+
+  function submitWaitlist(e) {
+    e.preventDefault();
+    const email = document.getElementById('wl-email').value;
+    const errorEl = document.getElementById('wl-error');
+    const btn = document.getElementById('wl-btn');
+    const btnText = document.getElementById('wl-btn-text');
+
+    // Basic validation
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      errorEl.style.display = 'block';
+      return;
+    }
+    errorEl.style.display = 'none';
+
+    // Loading state
+    btn.disabled = true;
+    btnText.textContent = 'Saving your spot…';
+
+    // Collect data
+    const entry = {
+      name: document.getElementById('wl-name').value,
+      email: email,
+      role: document.getElementById('wl-role').value,
+      frustration: document.getElementById('wl-frustration').value,
+      timestamp: new Date().toISOString()
+    };
+
+    // Store locally (you'll connect a real backend later)
+    const existing = JSON.parse(localStorage.getItem('clasp_waitlist') || '[]');
+    existing.push(entry);
+    localStorage.setItem('clasp_waitlist', JSON.stringify(existing));
+
+    // Bump counter
+    count++;
+    counterEl.textContent = count;
+
+    // Show success after brief delay
+    setTimeout(() => {
+      document.getElementById('waitlist-form-wrap').style.display = 'none';
+      document.getElementById('waitlist-success').style.display = 'block';
+    }, 800);
+  }
+
+  function shareWaitlist() {
+    const text = "I just joined the waitlist for Clasp — a LinkedIn alternative built for the AI agent era. Worth checking out if you're tired of clicking through LinkedIn manually.";
+    const url = window.location.href;
+    if (navigator.share) {
+      navigator.share({ title: 'Clasp', text, url });
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied! Share it with a colleague.');
+      });
+    }
+  }
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Clasp</div>
+  <p>Professional networking for the agent era · © 2026 Clasp Inc.</p>
+  <p style="margin-top: 8px;"><a href="#" style="color: rgba(255,255,255,0.3); margin: 0 12px; text-decoration:none;">Privacy</a><a href="#" style="color: rgba(255,255,255,0.3); margin: 0 12px; text-decoration:none;">Terms</a><a href="#" style="color: rgba(255,255,255,0.3); margin: 0 12px; text-decoration:none;">API Docs</a></p>
+</footer>
+
+</body>
+</html>
