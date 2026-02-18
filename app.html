@@ -180,7 +180,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 
 <div class="auth-screen visible" id="auth-screen">
   <div class="auth-box">
-    <div class="auth-logo">
+    <div class="auth-logo" onclick="window.location.href='/'" style="cursor:pointer;">
       <div class="auth-logo-mark"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       Clasp
     </div>
@@ -208,7 +208,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 <div class="app" id="app" style="display:none">
   <aside class="sidebar">
     <div class="sidebar-top">
-      <div class="logo"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Clasp</div>
+      <div class="logo" onclick="window.location.href='/'" style="cursor:pointer;"><div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Clasp</div>
       <button class="agent-trigger" onclick="openSpotlight()">
         <div class="agent-orb"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div>
         <div class="agent-trigger-text"><span>Ask Claude</span><span>Your AI networking agent</span></div>
@@ -382,6 +382,7 @@ const sb=createClient('https://exfejbtwxqczcghwfjyw.supabase.co','sb_publishable
 let currentUser=null,userProfile={},chatHistory=[],isLoading=false,currentTab='signin';
 
 async function init(){
+  if(window.location.hash==='#signup')switchTab('signup');
   const{data:{session}}=await sb.auth.getSession();
   if(session?.user)await loginSuccess(session.user);
   sb.auth.onAuthStateChange(async(event,session)=>{
