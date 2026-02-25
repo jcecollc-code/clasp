@@ -1336,6 +1336,7 @@ async function loadPeople(){
     .select('id,name,title,company,location,skills,open_to,headline,username,about,avatar_url')
     .eq('is_public',true)
     .not('name','is',null)
+    .neq('name','')
     .order('created_at',{ascending:false})
     .limit(100);
   allPeople=data||[];
