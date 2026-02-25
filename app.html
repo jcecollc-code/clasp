@@ -1066,20 +1066,24 @@ async function uploadAvatar(input) {
 }
 
 function showAvatarImage(url) {
+  if (!url) return;
   const img = document.getElementById('profile-av-img');
   const initials = document.getElementById('profile-av-initials');
-  if (img && url) {
+  const avDisplay = document.getElementById('profile-av-display');
+  
+  if (img) {
+    img.onload = () => {
+      img.style.display = 'block';
+      if (initials) initials.style.display = 'none';
+    };
+    img.onerror = () => console.error('Avatar failed to load:', url);
     img.src = url;
-    img.style.display = 'block';
-    if (initials) initials.style.display = 'none';
-    // Also update sidebar
-    const sav = document.getElementById('sidebar-av');
-    if (sav) {
-      sav.style.backgroundImage = 'url(' + url + ')';
-      sav.style.backgroundSize = 'cover';
-      sav.style.backgroundPosition = 'center';
-      sav.textContent = '';
-    }
+  }
+  
+  // Update sidebar avatar
+  const sav = document.getElementById('sidebar-av');
+  if (sav) {
+    const si = document.createElement('img'); si.src=url; si.style.cssText='width:34px;height:34px;border-radius:50%;object-fit:cover;'; sav.innerHTML=''; sav.appendChild(si);
   }
 }
 
