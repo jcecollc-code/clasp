@@ -214,6 +214,65 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .spot-footer{padding:8px 18px;border-top:1px solid var(--border);display:flex;gap:12px;background:var(--bg);}
 .spot-hint{font-size:0.68rem;color:var(--light);display:flex;align-items:center;gap:4px;}
 .spot-hint kbd{background:white;border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-family:'Outfit',sans-serif;font-size:0.65rem;}
+
+/* MESSAGING */
+.msg-screen-layout{display:flex;height:100%;overflow:hidden;}
+.conv-list{width:260px;border-right:1px solid var(--border);background:white;display:flex;flex-direction:column;flex-shrink:0;}
+.conv-list-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.conv-list-title{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;color:var(--blue-deep);}
+.conv-search{padding:10px 12px;border-bottom:1px solid var(--border);}
+.conv-search input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;font-family:'Outfit',sans-serif;font-size:0.82rem;outline:none;}
+.conv-search input:focus{border-color:var(--blue);}
+.conv-items{flex:1;overflow-y:auto;}
+.conv-item{padding:12px 16px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.1s;display:flex;gap:10px;align-items:center;}
+.conv-item:hover{background:var(--blue-light);}
+.conv-item.active{background:var(--blue-light);}
+.conv-av{width:36px;height:36px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.72rem;}
+.conv-name{font-size:0.85rem;font-weight:600;color:var(--text);}
+.conv-preview{font-size:0.75rem;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;}
+.conv-time{font-size:0.68rem;color:var(--light);margin-left:auto;flex-shrink:0;}
+.conv-unread{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;}
+.dm-window{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.dm-header{padding:14px 20px;background:white;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.dm-header-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.75rem;}
+.dm-header-name{font-size:0.9rem;font-weight:600;color:var(--text);}
+.dm-header-role{font-size:0.75rem;color:var(--muted);}
+.dm-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;}
+.dm-msg{display:flex;gap:8px;max-width:75%;}
+.dm-msg.mine{align-self:flex-end;flex-direction:row-reverse;}
+.dm-msg-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.65rem;margin-top:2px;}
+.dm-bubble{background:white;border:1px solid var(--border);border-radius:12px;border-bottom-left-radius:3px;padding:10px 14px;font-size:0.85rem;line-height:1.6;color:var(--text);}
+.dm-msg.mine .dm-bubble{background:var(--blue);color:white;border:none;border-bottom-right-radius:3px;border-bottom-left-radius:12px;}
+.dm-time{font-size:0.65rem;color:var(--light);margin-top:4px;}
+.dm-msg.mine .dm-time{text-align:right;}
+.dm-compose{padding:14px 20px;background:white;border-top:1px solid var(--border);flex-shrink:0;}
+.dm-compose-inner{display:flex;align-items:flex-end;gap:8px;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:8px 12px;}
+.dm-compose-inner:focus-within{border-color:var(--blue);}
+.dm-textarea{flex:1;border:none;outline:none;background:transparent;resize:none;font-family:'Outfit',sans-serif;font-size:0.88rem;color:var(--text);min-height:22px;max-height:100px;}
+.dm-textarea::placeholder{color:var(--light);}
+
+/* Claude suggestion bar */
+.claude-suggestion{background:var(--blue-deep);border-radius:10px;padding:10px 14px;margin:0 20px 10px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background 0.15s;}
+.claude-suggestion:hover{background:#0A2240;}
+.claude-suggestion-text{flex:1;font-size:0.78rem;color:rgba(255,255,255,0.85);line-height:1.5;}
+.claude-suggestion-label{font-size:0.65rem;color:rgba(255,255,255,0.4);margin-bottom:2px;}
+.approve-btn{background:var(--teal);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;white-space:nowrap;}
+.approve-btn:hover{background:#009e92;}
+.dismiss-btn{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);border:none;border-radius:6px;padding:5px 8px;font-size:0.75rem;cursor:pointer;font-family:'Outfit',sans-serif;}
+
+/* CHANNELS */
+.channel-layout{display:flex;height:100%;overflow:hidden;}
+.channel-list{width:220px;border-right:1px solid var(--border);background:white;display:flex;flex-direction:column;flex-shrink:0;}
+.channel-list-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.channel-items{flex:1;overflow-y:auto;padding:8px;}
+.channel-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:0.85rem;color:var(--muted);transition:all 0.1s;}
+.channel-item:hover{background:var(--blue-light);color:var(--blue);}
+.channel-item.active{background:var(--blue-light);color:var(--blue);font-weight:600;}
+.channel-hash{font-size:1rem;color:var(--light);}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:40px;color:var(--muted);}
+.empty-state-icon{font-size:2.5rem;margin-bottom:12px;}
+.empty-state-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-deep);margin-bottom:6px;}
+.empty-state-sub{font-size:0.82rem;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -264,6 +323,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
       <div class="nav-item" onclick="switchScreen('people',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>People</div>
       <div class="nav-item" onclick="switchScreen('outreach',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Draft Outreach</div>
       <div class="nav-item" onclick="switchScreen('drafts',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Saved Drafts</div>
+      <div class="nav-label" style="margin-top:8px;">Connect</div>
+      <div class="nav-item" id="nav-messages" onclick="switchScreen('messages',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages<span id="msg-badge" style="display:none;background:var(--red);color:white;font-size:0.6rem;padding:1px 6px;border-radius:10px;margin-left:auto;">0</span></div>
+      <div class="nav-item" id="nav-channels" onclick="switchScreen('channels',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Team Channels</div>
     </nav>
     <div class="sidebar-user">
       <div class="user-av" id="sidebar-av" onclick="switchScreen('profile',document.querySelectorAll('.nav-item')[1])">?</div>
@@ -476,6 +538,55 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
         <div id="drafts-list"><div style="text-align:center;padding:48px;color:var(--light);font-size:0.88rem;">No drafts yet.</div></div>
       </div>
     </div>
+
+    <!-- MESSAGES SCREEN -->
+    <div class="screen" id="screen-messages" style="padding:0;display:none;height:100%;">
+      <div class="msg-screen-layout">
+        <!-- Conversation list -->
+        <div class="conv-list">
+          <div class="conv-list-header">
+            <span class="conv-list-title">Messages</span>
+            <button class="btn-sm btn-dark" onclick="showNewDMModal()" style="padding:5px 10px;font-size:0.72rem;">+ New</button>
+          </div>
+          <div class="conv-search"><input type="text" placeholder="Search conversations…" oninput="filterConvs(this.value)"></div>
+          <div class="conv-items" id="conv-items">
+            <div style="text-align:center;padding:32px 16px;color:var(--light);font-size:0.82rem;">No messages yet.<br>Start a conversation from the People screen.</div>
+          </div>
+        </div>
+        <!-- Message window -->
+        <div class="dm-window" id="dm-window">
+          <div class="empty-state">
+            <div class="empty-state-icon">💬</div>
+            <div class="empty-state-title">Your messages</div>
+            <div class="empty-state-sub">Select a conversation or find someone in People to start messaging.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHANNELS SCREEN -->
+    <div class="screen" id="screen-channels" style="padding:0;display:none;height:100%;">
+      <div class="channel-layout">
+        <div class="channel-list">
+          <div class="channel-list-header">
+            <span class="conv-list-title">Channels</span>
+            <button class="btn-sm btn-dark" onclick="showNewChannelModal()" style="padding:5px 10px;font-size:0.72rem;">+ New</button>
+          </div>
+          <div class="channel-items" id="channel-items">
+            <div style="padding:8px;font-size:0.75rem;color:var(--light);">No channels yet</div>
+          </div>
+        </div>
+        <div class="dm-window" id="channel-window">
+          <div class="empty-state">
+            <div class="empty-state-icon">#</div>
+            <div class="empty-state-title">Team Channels</div>
+            <div class="empty-state-sub">Create a channel for your team to share Claude learnings, prompts, and updates.</div>
+            <button class="btn-save" onclick="showNewChannelModal()" style="margin-top:16px;">Create a channel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -513,6 +624,310 @@ let currentUser=null,userProfile={},chatHistory=[],isLoading=false,currentTab='s
 let userSkills=[],userOpenTo=[],userExperience=[];
 
 // ── INIT ──
+
+// ── MESSAGING ──
+let activeConvUserId = null;
+let activeChannelId = null;
+let dmSubscription = null;
+let allConvs = [];
+
+async function loadConversations() {
+  // Get all unique users we've had conversations with
+  const { data: sent } = await sb.from('messages').select('recipient_id').eq('sender_id', currentUser.id);
+  const { data: recv } = await sb.from('messages').select('sender_id').eq('recipient_id', currentUser.id);
+  const userIds = [...new Set([
+    ...(sent||[]).map(m=>m.recipient_id),
+    ...(recv||[]).map(m=>m.sender_id)
+  ])];
+  if (!userIds.length) return;
+
+  // Get profiles for those users
+  const { data: profiles } = await sb.from('profiles').select('id,name,title,company').in('id', userIds);
+  allConvs = profiles || [];
+  renderConvList(allConvs);
+  checkUnread();
+}
+
+function renderConvList(convs) {
+  const el = document.getElementById('conv-items');
+  if (!el) return;
+  if (!convs.length) {
+    el.innerHTML = '<div style="text-align:center;padding:32px 16px;color:var(--light);font-size:0.82rem;">No messages yet.<br>Start a conversation from the People screen.</div>';
+    return;
+  }
+  const colors = ['linear-gradient(135deg,#0A66C2,#00B4A6)','linear-gradient(135deg,#004182,#0073B1)'];
+  el.innerHTML = convs.map((p,i) => 
+    '<div class="conv-item' + (activeConvUserId===p.id?' active':'') + '" onclick="openDM(''+p.id+'',''+p.name+'',''+(p.title||'')+(p.company?' at '+p.company:'')+'')">'+
+    '<div class="conv-av" style="background:'+colors[i%colors.length]+'">'+ini(p.name)+'</div>'+
+    '<div style="flex:1;min-width:0;">'+
+      '<div class="conv-name">'+p.name+'</div>'+
+      '<div class="conv-preview">'+(p.title||'')+(p.company?' · '+p.company:'')+'</div>'+
+    '</div>'+
+    '</div>'
+  ).join('');
+}
+
+function filterConvs(q) {
+  const filtered = allConvs.filter(p => (p.name+' '+(p.title||'')+' '+(p.company||'')).toLowerCase().includes(q.toLowerCase()));
+  renderConvList(filtered);
+}
+
+async function openDM(userId, name, role) {
+  activeConvUserId = userId;
+  renderConvList(allConvs); // re-render to show active state
+
+  const win = document.getElementById('dm-window');
+  win.innerHTML = 
+    '<div class="dm-header">'+
+      '<div class="dm-header-av">'+ini(name)+'</div>'+
+      '<div><div class="dm-header-name">'+name+'</div><div class="dm-header-role">'+role+'</div></div>'+
+      '<div style="margin-left:auto;display:flex;gap:8px;">'+
+        '<button class="btn-sm btn-ghost" onclick="draftOutreachFor(''+name+'',''+role+'')" style="font-size:0.72rem;">✦ Draft outreach</button>'+
+        '<button class="btn-sm btn-dark" onclick="askClaudeAboutPerson(''+name+'',''+role+'')" style="font-size:0.72rem;">✦ Ask Claude</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="dm-messages" id="dm-msgs"></div>'+
+    '<div id="claude-suggestion-area"></div>'+
+    '<div class="dm-compose">'+
+      '<div class="dm-compose-inner">'+
+        '<textarea class="dm-textarea" id="dm-input" placeholder="Message '+name+'…" rows="1" oninput="autoResize(this);suggestReply()" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDM(''+userId+'',''+name+'',''+role+'')}"></textarea>'+
+        '<button class="send-btn" onclick="sendDM(''+userId+'',''+name+'',''+role+'')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>'+
+      '</div>'+
+    '</div>';
+
+  await loadDMMessages(userId);
+  
+  // Subscribe to real-time messages
+  if (dmSubscription) dmSubscription.unsubscribe();
+  dmSubscription = sb.channel('dm-'+userId)
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+      const m = payload.new;
+      if ((m.sender_id === currentUser.id && m.recipient_id === userId) ||
+          (m.sender_id === userId && m.recipient_id === currentUser.id)) {
+        appendDMMsg(m.sender_id === currentUser.id ? 'mine' : 'theirs', m.content, name);
+      }
+    }).subscribe();
+}
+
+async function loadDMMessages(userId) {
+  const { data } = await sb.from('messages')
+    .select('*')
+    .or('and(sender_id.eq.'+currentUser.id+',recipient_id.eq.'+userId+'),and(sender_id.eq.'+userId+',recipient_id.eq.'+currentUser.id+')')
+    .order('created_at', { ascending: true });
+  
+  const area = document.getElementById('dm-msgs');
+  if (!area) return;
+  if (!data || !data.length) {
+    area.innerHTML = '<div style="text-align:center;padding:24px;color:var(--light);font-size:0.82rem;">No messages yet — say hello!</div>';
+    return;
+  }
+  area.innerHTML = '';
+  
+  // Get their name for display
+  const { data: profile } = await sb.from('profiles').select('name').eq('id', userId).single();
+  const theirName = profile?.name || 'them';
+  
+  data.forEach(m => appendDMMsg(m.sender_id === currentUser.id ? 'mine' : 'theirs', m.content, theirName));
+  area.scrollTop = area.scrollHeight;
+
+  // Mark as read
+  await sb.from('messages').update({ read: true }).eq('recipient_id', currentUser.id).eq('sender_id', userId);
+}
+
+function appendDMMsg(side, text, theirName) {
+  const area = document.getElementById('dm-msgs');
+  if (!area) return;
+  const time = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  const isMine = side === 'mine';
+  const name = isMine ? (userProfile.name||'Me') : theirName;
+  const div = document.createElement('div');
+  div.className = 'dm-msg ' + (isMine ? 'mine' : '');
+  div.innerHTML = 
+    '<div class="dm-msg-av">'+ini(name)+'</div>'+
+    '<div><div class="dm-bubble">'+fmt(text)+'</div><div class="dm-time">'+time+'</div></div>';
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+async function sendDM(userId, name, role) {
+  const input = document.getElementById('dm-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = ''; autoResize(input);
+  document.getElementById('claude-suggestion-area').innerHTML = '';
+  
+  const { error } = await sb.from('messages').insert({
+    sender_id: currentUser.id,
+    recipient_id: userId,
+    content: text
+  });
+  if (error) { showToast('Error sending message'); return; }
+  appendDMMsg('mine', text, name);
+  
+  // Add to conv list if not there
+  if (!allConvs.find(c => c.id === userId)) {
+    await loadConversations();
+  }
+}
+
+// Claude reply suggestion
+let suggestTimeout = null;
+function suggestReply() {
+  clearTimeout(suggestTimeout);
+  suggestTimeout = setTimeout(async () => {
+    const input = document.getElementById('dm-input');
+    if (!input || input.value.length > 0) return; // only suggest when input is empty after clearing
+  }, 2000);
+}
+
+async function askClaudeAboutPerson(name, role) {
+  switchScreen('agent', document.querySelectorAll('.nav-item')[0]);
+  setTimeout(() => {
+    document.getElementById('chat-input').value = 'Research ' + name + ' (' + role + ') for me before I message them. What should I know?';
+    sendMessage();
+  }, 100);
+}
+
+async function generateClaudeDMSuggestion(name, role, lastMsg) {
+  const area = document.getElementById('claude-suggestion-area');
+  if (!area) return;
+  area.innerHTML = '<div class="claude-suggestion"><div class="agent-orb" style="width:24px;height:24px;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="white" width="10" height="10"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div><div class="claude-suggestion-text"><div class="claude-suggestion-label">CLAUDE SUGGESTS</div>Thinking of a reply…</div></div>';
+  
+  try {
+    const r = await fetch('/.netlify/functions/claude', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        system: getSys(),
+        messages: [{ role: 'user', content: 'Draft a short reply to ' + name + ' (' + role + '). Their last message: "' + lastMsg + '". Keep it natural and under 2 sentences. Just the reply text, no preamble.' }]
+      })
+    });
+    const d = await r.json();
+    const suggestion = d.content?.[0]?.text || '';
+    if (!suggestion) { area.innerHTML = ''; return; }
+    area.innerHTML = 
+      '<div class="claude-suggestion">'+
+        '<div class="agent-orb" style="width:24px;height:24px;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="white" width="10" height="10"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div>'+
+        '<div class="claude-suggestion-text"><div class="claude-suggestion-label">CLAUDE SUGGESTS — click Approve to send</div>'+suggestion+'</div>'+
+        '<button class="approve-btn" onclick="approveDMSuggestion(''+suggestion.replace(/'/g,"\'")+'')" >Approve</button>'+
+        '<button class="dismiss-btn" onclick="document.getElementById('claude-suggestion-area').innerHTML=''">✕</button>'+
+      '</div>';
+  } catch(e) { area.innerHTML = ''; }
+}
+
+async function approveDMSuggestion(text) {
+  const input = document.getElementById('dm-input');
+  if (input) { input.value = text; input.focus(); }
+  document.getElementById('claude-suggestion-area').innerHTML = '';
+}
+
+async function startDMWith(userId, name, role) {
+  switchScreen('messages', document.getElementById('nav-messages'));
+  await loadConversations();
+  setTimeout(() => openDM(userId, name, role), 100);
+}
+
+function showNewDMModal() {
+  switchScreen('people', document.querySelectorAll('.nav-item')[2]);
+  showToast('Find someone in People and click Message');
+}
+
+async function checkUnread() {
+  const { count } = await sb.from('messages').select('*', {count:'exact',head:true}).eq('recipient_id', currentUser.id).eq('read', false);
+  const badge = document.getElementById('msg-badge');
+  if (badge) {
+    if (count > 0) { badge.textContent = count; badge.style.display = 'inline'; }
+    else badge.style.display = 'none';
+  }
+}
+
+// ── CHANNELS ──
+async function loadChannels() {
+  const { data } = await sb.from('channel_members').select('channel_id, channels(id,name,description)').eq('user_id', currentUser.id);
+  const channels = (data||[]).map(r => r.channels).filter(Boolean);
+  const el = document.getElementById('channel-items');
+  if (!el) return;
+  if (!channels.length) {
+    el.innerHTML = '<div style="padding:8px;font-size:0.75rem;color:var(--light);">No channels yet</div>';
+    return;
+  }
+  el.innerHTML = channels.map(c => 
+    '<div class="channel-item'+(activeChannelId===c.id?' active':'')+'" onclick="openChannel(''+c.id+'',''+c.name+'')">'+
+    '<span class="channel-hash">#</span>'+c.name+'</div>'
+  ).join('');
+}
+
+async function openChannel(channelId, name) {
+  activeChannelId = channelId;
+  await loadChannels();
+  const win = document.getElementById('channel-window');
+  win.innerHTML = 
+    '<div class="dm-header">'+
+      '<div style="width:32px;height:32px;border-radius:8px;background:var(--blue-deep);display:flex;align-items:center;justify-content:center;color:white;font-size:1rem;font-weight:700;">#</div>'+
+      '<div><div class="dm-header-name">#'+name+'</div></div>'+
+      '<div style="margin-left:auto;"><button class="btn-sm btn-dark" onclick="askClaudeForChannel(''+name+'')" style="font-size:0.72rem;">✦ Ask Claude</button></div>'+
+    '</div>'+
+    '<div class="dm-messages" id="channel-msgs"></div>'+
+    '<div class="dm-compose">'+
+      '<div class="dm-compose-inner">'+
+        '<textarea class="dm-textarea" id="channel-input" placeholder="Message #'+name+'…" rows="1" oninput="autoResize(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChannelMsg(''+channelId+'')}"></textarea>'+
+        '<button class="send-btn" onclick="sendChannelMsg(''+channelId+'')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>'+
+      '</div>'+
+    '</div>';
+
+  // Load messages
+  const { data } = await sb.from('channel_messages').select('*, profiles(name)').eq('channel_id', channelId).order('created_at', { ascending: true });
+  const area = document.getElementById('channel-msgs');
+  if (!data || !data.length) {
+    area.innerHTML = '<div style="text-align:center;padding:24px;color:var(--light);font-size:0.82rem;">No messages yet — say something!</div>';
+  } else {
+    data.forEach(m => {
+      const isMine = m.sender_id === currentUser.id;
+      const div = document.createElement('div');
+      div.className = 'dm-msg ' + (isMine ? 'mine' : '');
+      div.innerHTML = '<div class="dm-msg-av">'+ini(m.profiles?.name||'?')+'</div><div><div class="dm-bubble">'+fmt(m.content)+'</div><div class="dm-time">'+m.profiles?.name+' · '+new Date(m.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</div></div>';
+      area.appendChild(div);
+    });
+    area.scrollTop = area.scrollHeight;
+  }
+}
+
+async function sendChannelMsg(channelId) {
+  const input = document.getElementById('channel-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = ''; autoResize(input);
+  await sb.from('channel_messages').insert({ channel_id: channelId, sender_id: currentUser.id, content: text });
+  const area = document.getElementById('channel-msgs');
+  const div = document.createElement('div');
+  div.className = 'dm-msg mine';
+  div.innerHTML = '<div class="dm-msg-av">'+ini(userProfile.name||'Me')+'</div><div><div class="dm-bubble">'+fmt(text)+'</div><div class="dm-time">'+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</div></div>';
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function askClaudeForChannel(name) {
+  switchScreen('agent', document.querySelectorAll('.nav-item')[0]);
+  setTimeout(() => {
+    document.getElementById('chat-input').value = 'Summarize the key learnings from our #' + name + ' channel and suggest what we should discuss next.';
+    sendMessage();
+  }, 100);
+}
+
+function showNewChannelModal() {
+  const name = prompt('Channel name (e.g. sales-team, ai-learnings):');
+  if (!name) return;
+  createChannel(name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''));
+}
+
+async function createChannel(name) {
+  const { data, error } = await sb.from('channels').insert({ name, created_by: currentUser.id }).select().single();
+  if (error) { showToast('Error creating channel'); return; }
+  await sb.from('channel_members').insert({ channel_id: data.id, user_id: currentUser.id });
+  showToast('#' + name + ' created!');
+  await loadChannels();
+  openChannel(data.id, name);
+}
+
 async function init(){
   if(window.location.hash==='#signup')switchTab('signup');
   const{data:{session}}=await sb.auth.getSession();
@@ -531,6 +946,8 @@ async function loginSuccess(user){
   await loadChatHistory();
   await loadDraftsCount();
   loadPeople();
+  loadConversations();
+  setInterval(checkUnread, 30000);
 }
 
 function showAuth(){
@@ -924,12 +1341,18 @@ function removeTyping(id){document.getElementById(id)?.remove();}
 function switchScreen(name,el){
   document.querySelectorAll('.screen,.agent-screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('screen-'+name)?.classList.add('active');
+  const scr = document.getElementById('screen-'+name);
+  if(scr){
+    scr.classList.add('active');
+    if(name==='messages'||name==='channels'){scr.style.display='flex';}
+  }
   if(el)el.classList.add('active');
-  const titles={agent:'Claude Agent',profile:'My Profile',people:'People',outreach:'Draft Outreach',drafts:'Saved Drafts'};
+  const titles={agent:'Claude Agent',profile:'My Profile',people:'People',outreach:'Draft Outreach',drafts:'Saved Drafts',messages:'Messages',channels:'Team Channels'};
   document.getElementById('page-title').textContent=titles[name]||name;
   if(name==='drafts')loadDraftsList();
   if(name==='people')loadPeople();
+  if(name==='messages'){loadConversations();checkUnread();}
+  if(name==='channels')loadChannels();
 }
 
 function sendSuggestion(el){document.getElementById('chat-input').value=el.textContent;sendMessage();}
