@@ -657,7 +657,7 @@ function renderConvList(convs) {
   }
   const colors = ['linear-gradient(135deg,#0A66C2,#00B4A6)','linear-gradient(135deg,#004182,#0073B1)'];
   el.innerHTML = convs.map((p,i) => 
-    '<div class="conv-item' + (activeConvUserId===p.id?' active':'') + '" onclick="openDM(''+p.id+'',''+p.name+'',''+(p.title||'')+(p.company?' at '+p.company:'')+'')">'+
+    '<div class="conv-item' + (activeConvUserId===p.id?' active':'') + '" onclick="openDM(\''+p.id+'\',\''+p.name.replace(/'/g,'')+'\',\''+((p.title||'')+(p.company?' at '+p.company:'')).replace(/'/g,'')+'\')">'+ 
     '<div class="conv-av" style="background:'+colors[i%colors.length]+'">'+ini(p.name)+'</div>'+
     '<div style="flex:1;min-width:0;">'+
       '<div class="conv-name">'+p.name+'</div>'+
@@ -682,16 +682,16 @@ async function openDM(userId, name, role) {
       '<div class="dm-header-av">'+ini(name)+'</div>'+
       '<div><div class="dm-header-name">'+name+'</div><div class="dm-header-role">'+role+'</div></div>'+
       '<div style="margin-left:auto;display:flex;gap:8px;">'+
-        '<button class="btn-sm btn-ghost" onclick="draftOutreachFor(''+name+'',''+role+'')" style="font-size:0.72rem;">✦ Draft outreach</button>'+
-        '<button class="btn-sm btn-dark" onclick="askClaudeAboutPerson(''+name+'',''+role+'')" style="font-size:0.72rem;">✦ Ask Claude</button>'+
+        '<button class="btn-sm btn-dark" onclick="draftOutreachFor(\''+name+'\',\''+role+'\')" style="font-size:0.72rem;">✦ Draft outreach</button>'+
+        '<button class="btn-sm btn-dark" onclick="askClaudeAboutPerson(\''+name+'\',\''+role+'\')" style="font-size:0.72rem;">✦ Ask Claude</button>'+
       '</div>'+
     '</div>'+
     '<div class="dm-messages" id="dm-msgs"></div>'+
     '<div id="claude-suggestion-area"></div>'+
     '<div class="dm-compose">'+
       '<div class="dm-compose-inner">'+
-        '<textarea class="dm-textarea" id="dm-input" placeholder="Message '+name+'…" rows="1" oninput="autoResize(this);suggestReply()" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDM(''+userId+'',''+name+'',''+role+'')}"></textarea>'+
-        '<button class="send-btn" onclick="sendDM(''+userId+'',''+name+'',''+role+'')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>'+
+        '<textarea class="dm-textarea" id="dm-input" placeholder="Message '+name+'\u2026" rows="1" oninput="autoResize(this)" onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();sendDM(\''+userId+'\',\''+name+'\',\''+role+'\')}"></textarea>'+
+        '<button class="send-btn" onclick="sendDM(\''+userId+'\',\''+name+'\',\''+role+'\')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>'+
       '</div>'+
     '</div>';
 
@@ -807,10 +807,17 @@ async function generateClaudeDMSuggestion(name, role, lastMsg) {
     area.innerHTML = 
       '<div class="claude-suggestion">'+
         '<div class="agent-orb" style="width:24px;height:24px;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="white" width="10" height="10"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div>'+
-        '<div class="claude-suggestion-text"><div class="claude-suggestion-label">CLAUDE SUGGESTS — click Approve to send</div>'+suggestion+'</div>'+
-        '<button class="approve-btn" onclick="approveDMSuggestion(''+suggestion.replace(/'/g,"\'")+'')" >Approve</button>'+
-        '<button class="dismiss-btn" onclick="document.getElementById('claude-suggestion-area').innerHTML=''">✕</button>'+
+        '<div class="claude-suggestion-text"><div class="claude-suggestion-label">CLAUDE SUGGESTS — click Approve to use</div>'+suggestion+'</div>'+
+        '<button class="approve-btn" id="approve-dm-btn">Approve ✓</button>'+
+        '<button class="dismiss-btn" id="dismiss-dm-btn">✕</button>'+
       '</div>';
+    window._pendingSuggestion = suggestion;
+    setTimeout(() => {
+      const ab = document.getElementById('approve-dm-btn');
+      const db = document.getElementById('dismiss-dm-btn');
+      if(ab) ab.onclick = () => approveDMSuggestion(window._pendingSuggestion);
+      if(db) db.onclick = () => { document.getElementById('claude-suggestion-area').innerHTML=''; };
+    }, 50);
   } catch(e) { area.innerHTML = ''; }
 }
 
@@ -851,7 +858,7 @@ async function loadChannels() {
     return;
   }
   el.innerHTML = channels.map(c => 
-    '<div class="channel-item'+(activeChannelId===c.id?' active':'')+'" onclick="openChannel(''+c.id+'',''+c.name+'')">'+
+    '<div class="channel-item'+(activeChannelId===c.id?' active':'')+'" onclick="openChannel(\''+c.id+'\',\''+c.name+'\')">'+
     '<span class="channel-hash">#</span>'+c.name+'</div>'
   ).join('');
 }
@@ -864,13 +871,13 @@ async function openChannel(channelId, name) {
     '<div class="dm-header">'+
       '<div style="width:32px;height:32px;border-radius:8px;background:var(--blue-deep);display:flex;align-items:center;justify-content:center;color:white;font-size:1rem;font-weight:700;">#</div>'+
       '<div><div class="dm-header-name">#'+name+'</div></div>'+
-      '<div style="margin-left:auto;"><button class="btn-sm btn-dark" onclick="askClaudeForChannel(''+name+'')" style="font-size:0.72rem;">✦ Ask Claude</button></div>'+
+      '<div style="margin-left:auto;"><button class="btn-sm btn-dark" onclick="askClaudeForChannel(\''+name+'\')" style="font-size:0.72rem;">✦ Ask Claude</button></div>'+
     '</div>'+
     '<div class="dm-messages" id="channel-msgs"></div>'+
     '<div class="dm-compose">'+
       '<div class="dm-compose-inner">'+
-        '<textarea class="dm-textarea" id="channel-input" placeholder="Message #'+name+'…" rows="1" oninput="autoResize(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChannelMsg(''+channelId+'')}"></textarea>'+
-        '<button class="send-btn" onclick="sendChannelMsg(''+channelId+'')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>'+
+        '<textarea class="dm-textarea" id="channel-input" placeholder="Message #'+name+'\u2026" rows="1" oninput="autoResize(this)" onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();sendChannelMsg(\''+channelId+'\')}"></textarea>'+
+        '<button class="send-btn" onclick="sendChannelMsg(\''+channelId+'\')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>'+
       '</div>'+
     '</div>';
 
@@ -1150,6 +1157,7 @@ function renderPeople(people){
       '<div class="person-actions">'+
         '<button class="btn-sm btn-dark" onclick="event.stopPropagation();draftOutreachFor(\''+p.name+'\',\''+(p.title||'')+(p.company?' at '+p.company:'')+'\')">✦ Draft outreach</button>'+
         '<button class="btn-sm btn-ghost" onclick="event.stopPropagation();openProfile(\''+p.id+'\')">View profile</button>'+
+        '<button class="btn-sm btn-ghost" onclick="event.stopPropagation();startDMWith(\''+p.id+'\',\''+p.name.replace(/\x27/g,'')+'\',' + "'" + (p.title||'')+(p.company?' at '+p.company:'')+ "'" + ')" style="font-size:0.72rem;">💬 Message</button>'+
       '</div>'+
     '</div>';
   }).join('');
