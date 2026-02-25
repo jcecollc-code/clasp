@@ -905,11 +905,12 @@ async function sendChannelMsg(channelId) {
   if (!text) return;
   input.value = ''; autoResize(input);
 
-  // Save message to DB
-  await sb.from('channel_messages').insert({ channel_id: channelId, sender_id: currentUser.id, content: text });
-
-  // Render user message
+  // Render user message first
   const area = document.getElementById('channel-msgs');
+  if (!area) { console.error('channel-msgs not found'); return; }
+
+  // Save message to DB (non-blocking)
+  sb.from('channel_messages').insert({ channel_id: channelId, sender_id: currentUser.id, content: text });
   const div = document.createElement('div');
   div.className = 'dm-msg mine';
   div.innerHTML = '<div class="dm-msg-av">'+ini(userProfile.name||'Me')+'</div><div><div class="dm-bubble">'+fmt(text)+'</div><div class="dm-time">'+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</div></div>';
