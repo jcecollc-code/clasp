@@ -72,7 +72,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .screen.active{display:block;}
 .screen.active.flex-screen{display:flex!important;}
 .agent-screen{display:none;flex:1;flex-direction:column;overflow:hidden;}
-.agent-screen.active{display:flex;}
+.agent-screen.active{display:flex!important;}
 
 /* AGENT */
 .agent-header-bar{padding:16px 24px;background:white;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;}
@@ -1505,7 +1505,7 @@ function appendTyping(){
 function removeTyping(id){document.getElementById(id)?.remove();}
 
 function switchScreen(name,el){
-  document.querySelectorAll('.screen,.agent-screen').forEach(s=>{s.classList.remove('active');s.style.display='none';});
+  document.querySelectorAll('.screen,.agent-screen').forEach(s=>{s.classList.remove('active');if(!s.classList.contains('agent-screen'))s.style.display='none';});
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   const scr = document.getElementById('screen-'+name);
   if(scr){
