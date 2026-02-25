@@ -70,6 +70,8 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
 .page-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-deep);}
 .screen{display:none;flex:1;overflow-y:auto;padding:24px;}
 .screen.active{display:block;}
+#screen-messages.active,#screen-channels.active{display:flex!important;padding:0;}
+#screen-messages.active .msg-screen-layout,#screen-channels.active .channel-layout{height:calc(100vh - 104px);}
 .screen.active.flex-screen{display:flex!important;}
 .agent-screen{display:none;flex:1;flex-direction:column;overflow:hidden;}
 .agent-screen.active{display:flex!important;}
@@ -550,7 +552,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
     </div>
 
     <!-- MESSAGES SCREEN -->
-    <div class="screen" id="screen-messages" style="padding:0;display:none;">
+    <div class="screen" id="screen-messages">
       <div class="msg-screen-layout">
         <!-- Conversation list -->
         <div class="conv-list">
@@ -575,7 +577,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
     </div>
 
     <!-- CHANNELS SCREEN -->
-    <div class="screen" id="screen-channels" style="padding:0;display:none;">
+    <div class="screen" id="screen-channels">
       <div class="channel-layout">
         <div class="channel-list">
           <div class="channel-list-header">
@@ -1505,13 +1507,10 @@ function appendTyping(){
 function removeTyping(id){document.getElementById(id)?.remove();}
 
 function switchScreen(name,el){
-  document.querySelectorAll('.screen,.agent-screen').forEach(s=>{s.classList.remove('active');if(!s.classList.contains('agent-screen'))s.style.display='none';});
+  document.querySelectorAll('.screen,.agent-screen').forEach(s=>{s.classList.remove('active');s.removeAttribute('style');});
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   const scr = document.getElementById('screen-'+name);
-  if(scr){
-    scr.classList.add('active');
-    
-  }
+  if(scr) scr.classList.add('active');
   if(el)el.classList.add('active');
   const titles={agent:'Claude Agent',profile:'My Profile',people:'People',outreach:'Draft Outreach',drafts:'Saved Drafts',messages:'Messages',channels:'Team Channels'};
   document.getElementById('page-title').textContent=titles[name]||name;
