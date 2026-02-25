@@ -904,13 +904,69 @@ async function sendChannelMsg(channelId) {
   const text = input.value.trim();
   if (!text) return;
   input.value = ''; autoResize(input);
+
+  // Save message to DB
   await sb.from('channel_messages').insert({ channel_id: channelId, sender_id: currentUser.id, content: text });
+
+  // Render user message
   const area = document.getElementById('channel-msgs');
   const div = document.createElement('div');
   div.className = 'dm-msg mine';
   div.innerHTML = '<div class="dm-msg-av">'+ini(userProfile.name||'Me')+'</div><div><div class="dm-bubble">'+fmt(text)+'</div><div class="dm-time">'+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</div></div>';
   area.appendChild(div);
   area.scrollTop = area.scrollHeight;
+
+  // Check if @Claude is mentioned
+  if (text.toLowerCase().includes('@claude')) {
+    // Show typing indicator
+    const tid = 'ct'+Date.now();
+    const tdiv = document.createElement('div');
+    tdiv.className = 'dm-msg'; tdiv.id = tid;
+    tdiv.innerHTML = '<div class="dm-msg-av" style="background:linear-gradient(135deg,var(--blue),var(--teal));"><svg viewBox="0 0 24 24" fill="white" width="10" height="10"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div><div class="dm-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>';
+    area.appendChild(tdiv);
+    area.scrollTop = area.scrollHeight;
+
+    try {
+      // Get recent channel context
+      const { data: recentMsgs } = await sb.from('channel_messages')
+        .select('content, profiles(name)')
+        .eq('channel_id', channelId)
+        .order('created_at', { ascending: false })
+        .limit(10);
+      
+      const context = (recentMsgs||[]).reverse().map(function(m){return (m.profiles&&m.profiles.name?m.profiles.name:'Someone') + ': ' + m.content;}).join(' | ');
+      
+      const r = await fetch('/.netlify/functions/claude', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          system: getSys() + ' You are also in a team channel. Be concise. Context: ' + context,
+          messages: [{ role: 'user', content: text.replace(/@claude/gi, 'Claude') }]
+        })
+      });
+      const d = await r.json();
+      const reply = d.content?.[0]?.text || 'Sorry, I could not respond right now.';
+
+      // Remove typing indicator
+      document.getElementById(tid)?.remove();
+
+      // Save Claude's response to channel
+      await sb.from('channel_messages').insert({ 
+        channel_id: channelId, 
+        sender_id: currentUser.id, // use current user as proxy for Claude
+        content: '✦ Claude: ' + reply 
+      });
+
+      // Render Claude response
+      const cdiv = document.createElement('div');
+      cdiv.className = 'dm-msg';
+      cdiv.innerHTML = '<div class="dm-msg-av" style="background:linear-gradient(135deg,var(--blue),var(--teal));"><svg viewBox="0 0 24 24" fill="white" width="10" height="10"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg></div><div><div class="dm-bubble" style="border-color:var(--blue-light);"><div style="font-size:0.68rem;color:var(--blue);font-weight:600;margin-bottom:4px;">✦ CLAUDE</div>'+fmt(reply)+'</div><div class="dm-time">'+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</div></div>';
+      area.appendChild(cdiv);
+      area.scrollTop = area.scrollHeight;
+
+    } catch(e) {
+      document.getElementById(tid)?.remove();
+    }
+  }
 }
 
 function askClaudeForChannel(name) {
