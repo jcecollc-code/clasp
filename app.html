@@ -744,15 +744,14 @@ async function loadDMMessages(userId) {
   const area = document.getElementById('dm-msgs');
   if (!area) return;
   if (!data || !data.length) {
-    area.innerHTML = '<div style="text-align:center;padding:24px;color:var(--light);font-size:0.82rem;">No messages yet — say hello!</div>';
+    area.innerHTML = '<div id="no-msgs-hint" style="text-align:center;padding:24px;color:var(--light);font-size:0.82rem;">No messages yet — say hello!</div>';
     return;
   }
-  area.innerHTML = '';
-  
   // Get their name for display
   const { data: profile } = await sb.from('profiles').select('name').eq('id', userId).single();
   const theirName = profile?.name || 'them';
   
+  area.innerHTML = ''; // clear before loading history
   data.forEach(m => appendDMMsg(m.sender_id === currentUser.id ? 'mine' : 'theirs', m.content, theirName));
   area.scrollTop = area.scrollHeight;
 
@@ -763,6 +762,9 @@ async function loadDMMessages(userId) {
 function appendDMMsg(side, text, theirName) {
   const area = document.getElementById('dm-msgs');
   if (!area) return;
+  // Remove "no messages" hint if present
+  const hint = document.getElementById('no-msgs-hint');
+  if (hint) hint.remove();
   const time = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   const isMine = side === 'mine';
   const name = isMine ? (userProfile.name||'Me') : theirName;
