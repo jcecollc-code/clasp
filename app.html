@@ -487,7 +487,16 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
           <div class="side-card">
             <div class="side-title">Your public profile link</div>
             <div id="public-link" style="font-size:0.78rem;color:var(--blue);word-break:break-all;margin-bottom:10px;">Fill in a username above</div>
-            <button class="btn-sm btn-ghost" onclick="copyPublicLink()" style="width:100%;justify-content:center;">Copy link</button>
+            <button class="btn-sm btn-ghost" onclick="copyPublicLink()" style="width:100%;justify-content:center;margin-bottom:10px;">Copy link</button>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border);">
+              <div>
+                <div style="font-size:0.82rem;font-weight:600;color:var(--text);">Visible in People directory</div>
+                <div style="font-size:0.72rem;color:var(--muted);margin-top:2px;" id="visibility-label">Your profile is public</div>
+              </div>
+              <div id="visibility-toggle" onclick="toggleVisibility()" style="width:44px;height:24px;border-radius:12px;background:var(--blue);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
+                <div id="visibility-knob" style="width:20px;height:20px;border-radius:50%;background:white;position:absolute;top:2px;right:2px;transition:all 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>
+              </div>
+            </div>
           </div>
           <div class="side-card">
             <div class="side-title">What Claude does with your profile</div>
@@ -1089,6 +1098,47 @@ function getAvatarHtml(avatarUrl, name, size) {
   return ini(name||'?');
 }
 
+
+async function toggleVisibility() {
+  const isPublic = userProfile.is_public !== false;
+  const newVal = !isPublic;
+  
+  const toggle = document.getElementById('visibility-toggle');
+  const knob = document.getElementById('visibility-knob');
+  const label = document.getElementById('visibility-label');
+  
+  if (newVal) {
+    toggle.style.background = 'var(--blue)';
+    knob.style.right = '2px'; knob.style.left = 'auto';
+    if(label) label.textContent = 'Your profile is public';
+  } else {
+    toggle.style.background = 'var(--light)';
+    knob.style.left = '2px'; knob.style.right = 'auto';
+    if(label) label.textContent = 'Your profile is hidden';
+  }
+  
+  userProfile.is_public = newVal;
+  await sb.from('profiles').update({ is_public: newVal }).eq('id', currentUser.id);
+  showToast(newVal ? 'Profile is now public' : 'Profile is now hidden');
+}
+
+function updateVisibilityToggle() {
+  const isPublic = userProfile.is_public !== false;
+  const toggle = document.getElementById('visibility-toggle');
+  const knob = document.getElementById('visibility-knob');
+  const label = document.getElementById('visibility-label');
+  if (!toggle) return;
+  if (isPublic) {
+    toggle.style.background = 'var(--blue)';
+    knob.style.right = '2px'; knob.style.left = 'auto';
+    if(label) label.textContent = 'Your profile is public';
+  } else {
+    toggle.style.background = 'var(--light)';
+    knob.style.left = '2px'; knob.style.right = 'auto';
+    if(label) label.textContent = 'Your profile is hidden';
+  }
+}
+
 async function init(){
   if(window.location.hash==='#signup')switchTab('signup');
   const{data:{session}}=await sb.auth.getSession();
@@ -1175,6 +1225,7 @@ async function loadProfile(){
   renderOpenTo();
   renderExperience();
   if(data && data.avatar_url) showAvatarImage(data.avatar_url);
+  if(data) updateVisibilityToggle();
 }
 
 function updateProfileDisplay(){
