@@ -736,10 +736,22 @@ async function openDM(userId, name, role) {
 }
 
 async function loadDMMessages(userId) {
-  const { data } = await sb.from('messages')
+  // Load all messages in both directions between these two users
+  const { data: sent } = await sb.from('messages')
     .select('*')
-    .or('and(sender_id.eq.'+currentUser.id+',recipient_id.eq.'+userId+'),and(sender_id.eq.'+userId+',recipient_id.eq.'+currentUser.id+')')
+    .eq('sender_id', currentUser.id)
+    .eq('recipient_id', userId)
     .order('created_at', { ascending: true });
+
+  const { data: recv } = await sb.from('messages')
+    .select('*')
+    .eq('sender_id', userId)
+    .eq('recipient_id', currentUser.id)
+    .order('created_at', { ascending: true });
+
+  // Merge and sort by created_at
+  const all = [...(sent||[]), ...(recv||[])].sort((a,b) => new Date(a.created_at) - new Date(b.created_at));
+  const data = all;
   
   const area = document.getElementById('dm-msgs');
   if (!area) return;
