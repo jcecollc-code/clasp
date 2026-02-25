@@ -541,7 +541,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
     </div>
 
     <!-- MESSAGES SCREEN -->
-    <div class="screen" id="screen-messages" style="padding:0;display:none;flex:1;overflow:hidden;height:calc(100vh - 52px);">
+    <div class="screen" id="screen-messages" style="padding:0;display:none;position:absolute;top:52px;bottom:0;left:var(--sidebar-w);right:0;">
       <div class="msg-screen-layout">
         <!-- Conversation list -->
         <div class="conv-list">
@@ -566,7 +566,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font
     </div>
 
     <!-- CHANNELS SCREEN -->
-    <div class="screen" id="screen-channels" style="padding:0;display:none;flex:1;overflow:hidden;height:calc(100vh - 52px);">
+    <div class="screen" id="screen-channels" style="padding:0;display:none;position:absolute;top:52px;bottom:0;left:var(--sidebar-w);right:0;">
       <div class="channel-layout">
         <div class="channel-list">
           <div class="channel-list-header">
@@ -1353,7 +1353,7 @@ function switchScreen(name,el){
   const scr = document.getElementById('screen-'+name);
   if(scr){
     scr.classList.add('active');
-    if(name==='messages'||name==='channels'){scr.style.display='flex';scr.style.height='calc(100vh - 52px)';}
+    if(name==='messages'||name==='channels'){scr.style.display='flex';}
   }
   if(el)el.classList.add('active');
   const titles={agent:'Claude Agent',profile:'My Profile',people:'People',outreach:'Draft Outreach',drafts:'Saved Drafts',messages:'Messages',channels:'Team Channels'};
