@@ -1213,8 +1213,10 @@ async function loadProfile(){
     userSkills=data.skills||[];
     userOpenTo=data.open_to||[];
     userExperience=data.experience||[];
-    const fields=['name','title','company','location','about','icp','username','headline','website','avatar_url'];
+    const fields=['name','title','company','location','about','icp','username','headline','website'];
     fields.forEach(f=>{const el=document.getElementById('input-'+f);if(el&&data[f])el.value=data[f];});
+    if(data.avatar_url) userProfile.avatar_url=data.avatar_url;
+    if(data.is_public!==undefined) userProfile.is_public=data.is_public;
   }else{
     const name=currentUser.user_metadata?.full_name||currentUser.email?.split('@')[0]||'';
     if(name)document.getElementById('input-name').value=name;
@@ -1332,14 +1334,15 @@ function copyPublicLink(){
 let allPeople=[];
 
 async function loadPeople(){
-  const{data}=await sb.from('profiles')
+  const{data,error}=await sb.from('profiles')
     .select('id,name,title,company,location,skills,open_to,headline,username,about,avatar_url')
     .eq('is_public',true)
     .not('name','is',null)
     .neq('name','')
     .order('created_at',{ascending:false})
     .limit(100);
-  allPeople=data||[];
+  if(error) console.error('loadPeople error:', error);
+  allPeople=(data||[]).filter(p=>p.name&&p.name.trim());
   renderPeople(allPeople);
 }
 
