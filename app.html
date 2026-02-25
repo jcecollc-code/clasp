@@ -928,6 +928,7 @@ async function sendChannelMsg(channelId) {
     area.scrollTop = area.scrollHeight;
 
     try {
+      console.log('Calling Claude for channel @mention...');
       // Get recent channel context
       const { data: recentMsgs } = await sb.from('channel_messages')
         .select('content, profiles(name)')
@@ -945,6 +946,7 @@ async function sendChannelMsg(channelId) {
         })
       });
       const d = await r.json();
+      console.log('Claude channel response:', JSON.stringify(d).slice(0,200));
       const reply = d.content?.[0]?.text || 'Sorry, I could not respond right now.';
 
       // Remove typing indicator
@@ -965,7 +967,15 @@ async function sendChannelMsg(channelId) {
       area.scrollTop = area.scrollHeight;
 
     } catch(e) {
+      console.error('Claude channel error:', e);
       document.getElementById(tid)?.remove();
+      const area2 = document.getElementById('channel-msgs');
+      if(area2){
+        const ediv = document.createElement('div');
+        ediv.className = 'dm-msg';
+        ediv.innerHTML = '<div class="dm-msg-av" style="background:var(--red);">!</div><div><div class="dm-bubble" style="color:var(--red);">Claude error: ' + e.message + '</div></div>';
+        area2.appendChild(ediv);
+      }
     }
   }
 }
