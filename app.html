@@ -1067,23 +1067,17 @@ async function uploadAvatar(input) {
 
 function showAvatarImage(url) {
   if (!url) return;
-  const img = document.getElementById('profile-av-img');
-  const initials = document.getElementById('profile-av-initials');
+  // Replace the entire profile avatar with an image
   const avDisplay = document.getElementById('profile-av-display');
-  
-  if (img) {
-    img.onload = () => {
-      img.style.display = 'block';
-      if (initials) initials.style.display = 'none';
-    };
-    img.onerror = () => console.error('Avatar failed to load:', url);
-    img.src = url;
+  if (avDisplay) {
+    avDisplay.style.padding = '0';
+    avDisplay.innerHTML = '<img src="'+url+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">';
   }
-  
-  // Update sidebar avatar
+  // Update sidebar
   const sav = document.getElementById('sidebar-av');
   if (sav) {
-    const si = document.createElement('img'); si.src=url; si.style.cssText='width:34px;height:34px;border-radius:50%;object-fit:cover;'; sav.innerHTML=''; sav.appendChild(si);
+    sav.style.padding = '0';
+    sav.innerHTML = '<img src="'+url+'" style="width:34px;height:34px;border-radius:50%;object-fit:cover;display:block;">';
   }
 }
 
